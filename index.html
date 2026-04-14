@@ -576,7 +576,13 @@ p { color: var(--cream-dim); }
 }
 .portfolio h2 {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 18px;
+}
+.portfolio-intro {
+  max-width: 760px;
+  margin: 0 auto 52px;
+  text-align: center;
+  font-size: 1rem;
 }
 .portfolio-grid {
   display: grid;
@@ -585,25 +591,57 @@ p { color: var(--cream-dim); }
 }
 .portfolio-card {
   position: relative;
-  height: 280px;
+  min-height: 320px;
   border-radius: 12px;
   overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 .portfolio-card:hover {
-  transform: scale(1.03);
+  transform: translateY(-6px);
+  border-color: rgba(200,169,110,0.24);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.24);
 }
-.portfolio-card::after {
+.portfolio-photo {
+  aspect-ratio: 4 / 5;
+  background-image:
+    linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.18) 45%, rgba(10,10,10,0.08) 100%),
+    var(--portfolio-image, linear-gradient(160deg, #1c1a17, #0e0d0b)),
+    var(--portfolio-fallback, linear-gradient(160deg, #1c1a17, #0e0d0b));
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat;
+}
+.portfolio-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15,15,15,0.9) 0%, rgba(15,15,15,0.2) 50%, transparent 100%);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), transparent 18%),
+    linear-gradient(0deg, rgba(15,15,15,0.2), transparent 35%);
+  pointer-events: none;
+}
+.portfolio-card::after {
+  content: attr(data-file);
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15,15,15,0.72);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--cream-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 2;
 }
 .portfolio-label {
   position: absolute;
   bottom: 20px;
   left: 20px;
+  right: 20px;
   z-index: 2;
 }
 .portfolio-label h4 {
@@ -617,10 +655,21 @@ p { color: var(--cream-dim); }
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+.portfolio-note {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--cream-dim);
+}
 
 @media (max-width: 768px) {
   .portfolio-grid { grid-template-columns: 1fr; }
-  .portfolio-card { height: 220px; }
+  .portfolio-card { min-height: 260px; }
+  .portfolio-card::after {
+    top: 14px;
+    right: 14px;
+    font-size: 0.68rem;
+  }
 }
 
 /* ===== 7. SOCIAL PROOF ===== */
@@ -1113,44 +1162,52 @@ p { color: var(--cream-dim); }
   <section class="portfolio section-padding noise" id="portfolio">
     <div class="container">
       <h2 class="reveal">Наши <span class="text-gold">работы</span></h2>
+      <p class="portfolio-intro reveal reveal-delay-1">Здесь можно показать реальные объекты в интерьере: крупные планы фактуры, общие ракурсы и то, как декоративная скала работает в готовом пространстве.</p>
       <div class="portfolio-grid">
-        <div class="portfolio-card rock-texture reveal" style="background: radial-gradient(ellipse at 25% 35%, rgba(85,75,60,0.5), transparent 65%), radial-gradient(ellipse at 75% 70%, rgba(55,50,40,0.4), transparent 60%), linear-gradient(155deg, #1c1a17, #0e0d0b);">
+        <div class="portfolio-card reveal" data-file="work-01.jpg" style="--portfolio-image: url('assets/portfolio/work-01.jpg'); --portfolio-fallback: radial-gradient(ellipse at 25% 35%, rgba(85,75,60,0.5), transparent 65%), radial-gradient(ellipse at 75% 70%, rgba(55,50,40,0.4), transparent 60%), linear-gradient(155deg, #1c1a17, #0e0d0b);">
+          <div class="portfolio-photo" aria-hidden="true"></div>
           <div class="portfolio-label">
             <h4>Спальня, лофт</h4>
             <span>Частный дом</span>
           </div>
         </div>
-        <div class="portfolio-card rock-texture reveal reveal-delay-1" style="background: radial-gradient(ellipse at 40% 50%, rgba(65,70,80,0.5), transparent 65%), radial-gradient(ellipse at 70% 30%, rgba(50,55,65,0.3), transparent 60%), linear-gradient(165deg, #17191c, #0c0d0e);">
+        <div class="portfolio-card reveal reveal-delay-1" data-file="work-02.jpg" style="--portfolio-image: url('assets/portfolio/work-02.jpg'); --portfolio-fallback: radial-gradient(ellipse at 40% 50%, rgba(65,70,80,0.5), transparent 65%), radial-gradient(ellipse at 70% 30%, rgba(50,55,65,0.3), transparent 60%), linear-gradient(165deg, #17191c, #0c0d0e);">
+          <div class="portfolio-photo" aria-hidden="true"></div>
           <div class="portfolio-label">
             <h4>Ресторан, центр Москвы</h4>
             <span>Коммерческий объект</span>
           </div>
         </div>
-        <div class="portfolio-card rock-texture reveal reveal-delay-2" style="background: radial-gradient(ellipse at 55% 40%, rgba(60,75,70,0.5), transparent 65%), radial-gradient(ellipse at 25% 70%, rgba(45,55,50,0.3), transparent 60%), linear-gradient(170deg, #151a18, #0b0e0c);">
+        <div class="portfolio-card reveal reveal-delay-2" data-file="work-03.jpg" style="--portfolio-image: url('assets/portfolio/work-03.jpg'); --portfolio-fallback: radial-gradient(ellipse at 55% 40%, rgba(60,75,70,0.5), transparent 65%), radial-gradient(ellipse at 25% 70%, rgba(45,55,50,0.3), transparent 60%), linear-gradient(170deg, #151a18, #0b0e0c);">
+          <div class="portfolio-photo" aria-hidden="true"></div>
           <div class="portfolio-label">
             <h4>Ванная, SPA</h4>
             <span>Квартира</span>
           </div>
         </div>
-        <div class="portfolio-card rock-texture reveal" style="background: radial-gradient(ellipse at 60% 60%, rgba(80,65,55,0.5), transparent 65%), radial-gradient(ellipse at 20% 30%, rgba(60,50,40,0.4), transparent 60%), linear-gradient(150deg, #1a1715, #0d0c0a);">
+        <div class="portfolio-card reveal" data-file="work-04.jpg" style="--portfolio-image: url('assets/portfolio/work-04.jpg'); --portfolio-fallback: radial-gradient(ellipse at 60% 60%, rgba(80,65,55,0.5), transparent 65%), radial-gradient(ellipse at 20% 30%, rgba(60,50,40,0.4), transparent 60%), linear-gradient(150deg, #1a1715, #0d0c0a);">
+          <div class="portfolio-photo" aria-hidden="true"></div>
           <div class="portfolio-label">
             <h4>Гостиная с камином</h4>
             <span>Загородный дом</span>
           </div>
         </div>
-        <div class="portfolio-card rock-texture reveal reveal-delay-1" style="background: radial-gradient(ellipse at 35% 55%, rgba(70,60,75,0.5), transparent 65%), radial-gradient(ellipse at 70% 40%, rgba(55,45,60,0.3), transparent 60%), linear-gradient(160deg, #191720, #0d0c10);">
+        <div class="portfolio-card reveal reveal-delay-1" data-file="work-05.jpg" style="--portfolio-image: url('assets/portfolio/work-05.jpg'); --portfolio-fallback: radial-gradient(ellipse at 35% 55%, rgba(70,60,75,0.5), transparent 65%), radial-gradient(ellipse at 70% 40%, rgba(55,45,60,0.3), transparent 60%), linear-gradient(160deg, #191720, #0d0c10);">
+          <div class="portfolio-photo" aria-hidden="true"></div>
           <div class="portfolio-label">
             <h4>Лобби бутик-отеля</h4>
             <span>Коммерческий объект</span>
           </div>
         </div>
-        <div class="portfolio-card rock-texture reveal reveal-delay-2" style="background: radial-gradient(ellipse at 50% 35%, rgba(75,70,60,0.5), transparent 65%), radial-gradient(ellipse at 30% 65%, rgba(55,50,45,0.4), transparent 60%), linear-gradient(145deg, #1b1916, #0e0d0b);">
+        <div class="portfolio-card reveal reveal-delay-2" data-file="work-06.jpg" style="--portfolio-image: url('assets/portfolio/work-06.jpg'); --portfolio-fallback: radial-gradient(ellipse at 50% 35%, rgba(75,70,60,0.5), transparent 65%), radial-gradient(ellipse at 30% 65%, rgba(55,50,45,0.4), transparent 60%), linear-gradient(145deg, #1b1916, #0e0d0b);">
+          <div class="portfolio-photo" aria-hidden="true"></div>
           <div class="portfolio-label">
             <h4>Кальянная, шале</h4>
             <span>Коммерческий объект</span>
           </div>
         </div>
       </div>
+      <p class="portfolio-note reveal">Каждая работа создаётся вручную под конкретное пространство, поэтому рельеф, глубина и оттенки всегда остаются уникальными.</p>
     </div>
   </section>
 
