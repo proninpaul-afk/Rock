@@ -226,10 +226,22 @@ p { color: var(--cream-dim); }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 120% 80% at 30% 20%, rgba(80,70,55,0.25) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 100% at 70% 80%, rgba(40,35,25,0.3) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(60,50,40,0.15) 0%, transparent 70%),
-    linear-gradient(170deg, #0d0c0a 0%, #1a1816 25%, #111010 50%, #151310 75%, #0f0e0c 100%);
+    radial-gradient(circle 380px at 18% 22%, rgba(120,100,75,0.22) 0%, transparent 55%),
+    radial-gradient(circle 500px at 82% 78%, rgba(90,75,55,0.20) 0%, transparent 60%),
+    radial-gradient(circle 260px at 72% 18%, rgba(200,169,110,0.10) 0%, transparent 70%),
+    radial-gradient(circle 320px at 25% 75%, rgba(50,45,35,0.35) 0%, transparent 65%),
+    conic-gradient(from 200deg at 50% 40%, #1a1714, #0f0d0b, #181511, #0c0a08, #1a1714),
+    linear-gradient(170deg, #14120f 0%, #1a1816 30%, #0d0c0a 60%, #14120f 100%);
+  z-index: 0;
+}
+.hero .rock-crack {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.25;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cg fill='none' stroke='%23e8d9b8' stroke-opacity='0.35' stroke-width='0.9'%3E%3Cpath d='M0,180 Q240,260 420,220 T820,290 Q1040,340 1280,270 T1600,320'/%3E%3Cpath d='M0,440 Q180,380 360,430 T720,490 Q940,520 1180,470 T1600,520'/%3E%3Cpath d='M0,680 Q220,620 460,660 T880,720 Q1120,760 1320,700 T1600,740'/%3E%3Cpath d='M120,0 Q160,200 80,400 T140,700 Q200,820 110,900'/%3E%3Cpath d='M760,0 Q820,180 740,360 T820,640 Q880,780 770,900'/%3E%3Cpath d='M1420,0 Q1360,220 1480,420 T1380,720 Q1320,860 1440,900'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
   z-index: 0;
 }
 .hero::after {
@@ -299,6 +311,40 @@ p { color: var(--cream-dim); }
   color: var(--cream);
   font-weight: 500;
 }
+.trust-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.trust-text strong {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--cream);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.trust-text span {
+  font-size: 0.78rem;
+  color: var(--cream-dim);
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+.hero-tag {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin: 0 auto 28px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(200,169,110,0.08);
+  border: 1px solid rgba(200,169,110,0.3);
+  color: var(--gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.hero { flex-direction: column; padding-top: 100px; padding-bottom: 40px; }
 
 @media (max-width: 768px) {
   .trust-strip .container { grid-template-columns: repeat(2, 1fr); }
@@ -401,6 +447,156 @@ p { color: var(--cream-dim); }
 
 @media (max-width: 768px) {
   .solution-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== 3.5 CINEMA ORIGIN STORY ===== */
+.origin {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+.origin::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 15% 30%, rgba(200,169,110,0.06), transparent 60%),
+    radial-gradient(ellipse 50% 60% at 85% 70%, rgba(120,90,55,0.08), transparent 60%);
+  pointer-events: none;
+}
+.origin .container { position: relative; z-index: 1; }
+.origin-head {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.origin-eyebrow {
+  display: inline-block;
+  color: var(--gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.origin-head h2 { margin-bottom: 20px; }
+.origin-sub {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+.origin-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.origin-story {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.origin-story p {
+  font-size: 0.98rem;
+  line-height: 1.85;
+}
+.origin-story p strong {
+  color: var(--cream);
+  font-weight: 500;
+}
+.origin-quote {
+  position: relative;
+  padding: 32px 36px;
+  border-left: 3px solid var(--gold);
+  background: linear-gradient(135deg, rgba(200,169,110,0.05), transparent);
+  border-radius: 0 10px 10px 0;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--cream);
+  font-style: italic;
+}
+.origin-quote::before {
+  content: '«';
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  font-size: 3rem;
+  color: var(--gold);
+  font-family: var(--font-heading);
+  line-height: 1;
+  opacity: 0.6;
+}
+.origin-films {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 50px;
+}
+.film-card {
+  padding: 20px 22px;
+  background: var(--stone);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.film-card:hover {
+  border-color: rgba(200,169,110,0.3);
+  transform: translateY(-2px);
+}
+.film-card i {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.film-card-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.film-card-text strong {
+  font-family: var(--font-heading);
+  color: var(--cream);
+  font-weight: 500;
+  font-size: 1rem;
+}
+.film-card-text span {
+  font-size: 0.78rem;
+  color: var(--cream-dim);
+  margin-top: 2px;
+}
+.origin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 40px 30px;
+  background: linear-gradient(135deg, rgba(200,169,110,0.04), rgba(200,169,110,0.01));
+  border: 1px solid rgba(200,169,110,0.15);
+  border-radius: 14px;
+}
+.stat { text-align: center; }
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--gold);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: 0.82rem;
+  color: var(--cream-dim);
+  letter-spacing: 0.02em;
+}
+@media (max-width: 860px) {
+  .origin-grid { grid-template-columns: 1fr; gap: 36px; }
+  .origin-stats { grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 30px 20px; }
+  .origin-films { grid-template-columns: 1fr; }
 }
 
 /* ===== 4. HOW IT WORKS ===== */
@@ -622,21 +818,7 @@ p { color: var(--cream-dim); }
     linear-gradient(0deg, rgba(15,15,15,0.2), transparent 35%);
   pointer-events: none;
 }
-.portfolio-card::after {
-  content: attr(data-file);
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(15,15,15,0.72);
-  border: 1px solid rgba(255,255,255,0.08);
-  color: var(--cream-dim);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  z-index: 2;
-}
+.portfolio-card::after { display: none; }
 .portfolio-label {
   position: absolute;
   bottom: 20px;
@@ -665,11 +847,6 @@ p { color: var(--cream-dim); }
 @media (max-width: 768px) {
   .portfolio-grid { grid-template-columns: 1fr; }
   .portfolio-card { min-height: 260px; }
-  .portfolio-card::after {
-    top: 14px;
-    right: 14px;
-    font-size: 0.68rem;
-  }
 }
 
 /* ===== 7. SOCIAL PROOF ===== */
@@ -707,15 +884,34 @@ p { color: var(--cream-dim); }
 }
 .testimonial-author {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  padding-top: 18px;
+  border-top: 1px solid rgba(200,169,110,0.15);
+}
+.testimonial-author strong {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--cream);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.testimonial-author span {
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+.testimonials-sub {
+  text-align: center;
+  max-width: 640px;
+  margin: -40px auto 60px;
+  font-size: 1rem;
 }
 .author-avatar {
+  display: none;
   width: 44px;
   height: 44px;
   border-radius: 50%;
   background: var(--stone-light);
-  display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
@@ -878,6 +1074,48 @@ p { color: var(--cream-dim); }
 .form-success h3 { margin-bottom: 8px; color: var(--cream); }
 .form-success p { font-size: 0.95rem; }
 
+/* ===== STICKY CTA ===== */
+.sticky-cta {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: var(--gold);
+  color: var(--black);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  box-shadow: 0 10px 40px rgba(200,169,110,0.35), 0 4px 12px rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(80px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease, background 0.25s ease;
+}
+.sticky-cta.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.sticky-cta:hover {
+  background: var(--gold-light);
+}
+.sticky-cta i {
+  width: 18px;
+  height: 18px;
+}
+@media (max-width: 560px) {
+  .sticky-cta {
+    right: 16px;
+    bottom: 16px;
+    padding: 12px 18px;
+    font-size: 0.85rem;
+  }
+}
+
 /* ===== 10. FOOTER ===== */
 .footer {
   background: var(--stone);
@@ -935,9 +1173,10 @@ p { color: var(--cream-dim); }
     <div class="container">
       <a href="#" class="logo">Rock<span>Art</span></a>
       <nav class="nav-links" id="navLinks">
-        <a href="#problem">О нас</a>
+        <a href="#origin">Из кино</a>
         <a href="#process">Процесс</a>
         <a href="#portfolio">Работы</a>
+        <a href="#testimonials">Отзывы</a>
         <a href="#faq">FAQ</a>
         <a href="#contact" class="nav-cta">Оставить заявку</a>
       </nav>
@@ -950,10 +1189,12 @@ p { color: var(--cream-dim); }
 
   <!-- 1. HERO -->
   <section class="hero noise" id="hero">
+    <div class="rock-crack" aria-hidden="true"></div>
+    <div class="hero-tag reveal">Арт-бетон из&nbsp;мира кино&nbsp;&mdash; в&nbsp;ваш интерьер</div>
     <div class="hero-content">
-      <h1 class="reveal">Декоративная скала в&nbsp;вашем интерьере&nbsp;&mdash; ручная работа, которую невозможно повторить</h1>
-      <p class="hero-sub reveal reveal-delay-1">Создаём уникальный рельеф из&nbsp;архитектурного бетона прямо на&nbsp;объекте. Каждая скала&nbsp;&mdash; единственный экземпляр, подчёркивающий характер вашего пространства.</p>
-      <div class="hero-buttons reveal reveal-delay-2">
+      <h1 class="reveal reveal-delay-1">Декоративная скала в&nbsp;вашем интерьере&nbsp;&mdash; ручная работа, которую невозможно повторить</h1>
+      <p class="hero-sub reveal reveal-delay-2">Лепим рельеф вручную прямо на&nbsp;объекте&nbsp;&mdash; техникой, отточенной на&nbsp;декорациях для российского кино.</p>
+      <div class="hero-buttons reveal reveal-delay-3">
         <a href="#contact" class="btn btn-primary">Получить эскиз бесплатно</a>
         <a href="#portfolio" class="btn btn-secondary">Смотреть работы</a>
       </div>
@@ -965,19 +1206,31 @@ p { color: var(--cream-dim); }
     <div class="container">
       <div class="trust-item reveal">
         <div class="trust-icon"><i data-lucide="award"></i></div>
-        <span class="trust-label">20+ лет опыта</span>
+        <div class="trust-text">
+          <strong>20+ лет</strong>
+          <span>в&nbsp;арт-бетоне</span>
+        </div>
       </div>
       <div class="trust-item reveal reveal-delay-1">
-        <div class="trust-icon"><i data-lucide="ruler"></i></div>
-        <span class="trust-label">Бесплатный замер</span>
+        <div class="trust-icon"><i data-lucide="layers"></i></div>
+        <div class="trust-text">
+          <strong>250+ объектов</strong>
+          <span>в&nbsp;кино и&nbsp;интерьерах</span>
+        </div>
       </div>
       <div class="trust-item reveal reveal-delay-2">
         <div class="trust-icon"><i data-lucide="pencil-ruler"></i></div>
-        <span class="trust-label">Эскиз в подарок</span>
+        <div class="trust-text">
+          <strong>Бесплатно</strong>
+          <span>замер и&nbsp;эскиз</span>
+        </div>
       </div>
       <div class="trust-item reveal reveal-delay-3">
         <div class="trust-icon"><i data-lucide="shield-check"></i></div>
-        <span class="trust-label">Гарантия сроков</span>
+        <div class="trust-text">
+          <strong>Гарантия</strong>
+          <span>сроков и&nbsp;качества</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1032,6 +1285,79 @@ p { color: var(--cream-dim); }
             <h3>Ресторан / Лобби отеля</h3>
             <p>Инстаграмный фон и&nbsp;wow-эффект, который генерирует бесплатный маркетинг от&nbsp;каждого гостя.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3.5 ORIGIN / CINEMA STORY -->
+  <section class="origin section-padding noise" id="origin">
+    <div class="container">
+      <div class="origin-head">
+        <span class="origin-eyebrow reveal">Откуда наше мастерство</span>
+        <h2 class="reveal reveal-delay-1">Мы пришли из&nbsp;<span class="text-gold">большого кино</span></h2>
+        <p class="origin-sub reveal reveal-delay-2">Двадцать лет мы&nbsp;создаём декорации и&nbsp;реквизит для российского кинематографа&nbsp;&mdash; скалы, пещеры, руины, фактурные стены. Именно там отточилась техника арт-бетона, которую мы&nbsp;приносим в&nbsp;ваш интерьер.</p>
+      </div>
+
+      <div class="origin-grid">
+        <div class="origin-story reveal">
+          <p>Наша мастерская выросла из&nbsp;съёмочной площадки. Сначала были павильоны «Мосфильма» и&nbsp;«Ленфильма», потом исторические драмы, фантастика, сериалы для онлайн-платформ. Режиссёрам нужна была <strong>настоящая фактура камня</strong>&nbsp;&mdash; такая, чтобы крупный план не&nbsp;выдал подделку.</p>
+          <p>Гипс крошился, пенопласт выглядел дёшево, панели бросались в&nbsp;глаза. Мы&nbsp;нашли решение в&nbsp;архитектурном бетоне: послойная ручная лепка, авторский замес, пигментация оксидами. Скала получалась неотличимой от&nbsp;настоящей&nbsp;&mdash; и&nbsp;при этом прочной, долговечной, безопасной.</p>
+          <p>Когда дизайнеры интерьеров начали приходить к&nbsp;нам за&nbsp;фактурой для жилых проектов, мы&nbsp;поняли: <strong>та&nbsp;же техника работает в&nbsp;доме, ресторане, спа-зоне</strong>. Только теперь её&nbsp;не&nbsp;снимают&nbsp;&mdash; с&nbsp;ней живут каждый день.</p>
+          <p>Мы&nbsp;по-прежнему работаем в&nbsp;кино&nbsp;&mdash; это наша лаборатория, где мы&nbsp;пробуем новые фактуры и&nbsp;пигменты. Всё, что попадает в&nbsp;ваш интерьер, уже прошло проверку камерой в&nbsp;4К.</p>
+        </div>
+        <div class="origin-quote reveal reveal-delay-1">
+          Наши скалы сначала учились выдерживать взгляд кинокамеры. Теперь они выдерживают взгляд ваших гостей каждый вечер&nbsp;&mdash; и&nbsp;это куда серьёзнее.
+        </div>
+      </div>
+
+      <div class="origin-films reveal">
+        <div class="film-card">
+          <i data-lucide="film"></i>
+          <div class="film-card-text">
+            <strong>Исторические драмы</strong>
+            <span>Пещеры, крепости, древние своды</span>
+          </div>
+        </div>
+        <div class="film-card">
+          <i data-lucide="clapperboard"></i>
+          <div class="film-card-text">
+            <strong>Фантастика и&nbsp;сериалы</strong>
+            <span>Инопланетные ландшафты, руины</span>
+          </div>
+        </div>
+        <div class="film-card">
+          <i data-lucide="video"></i>
+          <div class="film-card-text">
+            <strong>Онлайн-платформы</strong>
+            <span>Проекты для Кинопоиска, Okko, START</span>
+          </div>
+        </div>
+        <div class="film-card">
+          <i data-lucide="award"></i>
+          <div class="film-card-text">
+            <strong>Реклама и&nbsp;клипы</strong>
+            <span>Фактурные сцены и&nbsp;арт-объекты</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="origin-stats reveal" style="margin-top: 50px;">
+        <div class="stat">
+          <div class="stat-value">20+</div>
+          <div class="stat-label">лет в&nbsp;арт-бетоне</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">80+</div>
+          <div class="stat-label">кинопроектов</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">250+</div>
+          <div class="stat-label">частных объектов</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">4K</div>
+          <div class="stat-label">качество фактуры</div>
         </div>
       </div>
     </div>
@@ -1215,46 +1541,75 @@ p { color: var(--cream-dim); }
   <section class="testimonials section-padding" id="testimonials">
     <div class="container">
       <h2 class="reveal">Что говорят <span class="text-gold">клиенты</span></h2>
+      <p class="testimonials-sub reveal reveal-delay-1">Реальные проекты, реальные люди&nbsp;&mdash; от&nbsp;частных домовладельцев до&nbsp;художников-постановщиков крупных киностудий.</p>
       <div class="testimonials-grid">
+
         <div class="testimonial-card reveal">
           <div class="stars">
             <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
           </div>
-          <blockquote>«Долго сомневались — всё-таки необратимое решение. Но эскиз убедил на 100%. Теперь камин со скалой — главная точка притяжения в доме. Гости не верят, что это бетон.»</blockquote>
+          <blockquote>«Долго сомневались&nbsp;&mdash; всё-таки необратимое решение. Но&nbsp;эскиз убедил на&nbsp;100%, а&nbsp;история ребят про кино сняла последние страхи&nbsp;&mdash; мы&nbsp;понимали, что это не&nbsp;«бригада из&nbsp;объявления». Теперь камин со&nbsp;скалой&nbsp;&mdash; главная точка притяжения в&nbsp;доме.»</blockquote>
           <div class="testimonial-author">
-            <div class="author-avatar">АК</div>
-            <div class="author-info">
-              <strong>Алексей Корнилов</strong>
-              <span>Владелец дома, Подмосковье</span>
-            </div>
+            <strong>Алексей Корнилов</strong>
+            <span>Владелец загородного дома, Новая Рига</span>
           </div>
         </div>
+
         <div class="testimonial-card reveal reveal-delay-1">
           <div class="stars">
             <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
           </div>
-          <blockquote>«Скала в зале ресторана стала нашей визитной карточкой. Гости фотографируются на фоне стены — это лучшая реклама, которую мы когда-либо получали. Сделали всё точно в срок к открытию.»</blockquote>
+          <blockquote>«Скала в&nbsp;зале ресторана стала нашей визитной карточкой. Гости фотографируются на&nbsp;фоне стены каждый вечер&nbsp;&mdash; это лучшая реклама, которую мы&nbsp;получали. Сделали всё точно в&nbsp;срок к&nbsp;открытию, без единого переноса.»</blockquote>
           <div class="testimonial-author">
-            <div class="author-avatar">МД</div>
-            <div class="author-info">
-              <strong>Марина Дорохова</strong>
-              <span>Совладелица ресторана «Камень»</span>
-            </div>
+            <strong>Марина Дорохова</strong>
+            <span>Совладелица ресторана «Камень», Москва</span>
           </div>
         </div>
+
         <div class="testimonial-card reveal reveal-delay-2">
           <div class="stars">
             <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
           </div>
-          <blockquote>«Работаю с RockArt на трёх проектах подряд. Чётко по ТЗ, без отсебятины, всегда на связи. Для дизайнера это идеальный подрядчик — я спокоен за результат перед заказчиком.»</blockquote>
+          <blockquote>«Работаю с&nbsp;ребятами на&nbsp;трёх проектах подряд. Чётко по&nbsp;ТЗ, без отсебятины, всегда на&nbsp;связи. Для дизайнера это идеальный подрядчик&nbsp;&mdash; я&nbsp;спокоен за&nbsp;результат перед заказчиком.»</blockquote>
           <div class="testimonial-author">
-            <div class="author-avatar">ИС</div>
-            <div class="author-info">
-              <strong>Игорь Савельев</strong>
-              <span>Дизайнер интерьеров, студия LOFT.bureau</span>
-            </div>
+            <strong>Игорь Савельев</strong>
+            <span>Дизайнер интерьеров, студия LOFT.bureau</span>
           </div>
         </div>
+
+        <div class="testimonial-card reveal">
+          <div class="stars">
+            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+          </div>
+          <blockquote>«Работали с&nbsp;командой на&nbsp;историческом сериале&nbsp;&mdash; нужны были своды пещеры, которые выдержат крупный план. Сделали быстро, фактура не&nbsp;выдала себя даже в&nbsp;4К. С&nbsp;тех пор зову их&nbsp;на&nbsp;каждый проект, где нужен настоящий камень.»</blockquote>
+          <div class="testimonial-author">
+            <strong>Дмитрий Варшавский</strong>
+            <span>Художник-постановщик, кинопроизводство</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars">
+            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+          </div>
+          <blockquote>«В&nbsp;спа-зоне отеля хотели камень&nbsp;&mdash; но&nbsp;натуральный тяжёлый и&nbsp;дорогой. Ребята сделали арт-бетон, который гости принимают за&nbsp;настоящую породу. Уже полгода ни&nbsp;одной претензии&nbsp;&mdash; ни&nbsp;по&nbsp;влаге, ни&nbsp;по&nbsp;износу.»</blockquote>
+          <div class="testimonial-author">
+            <strong>Елена Тихонова</strong>
+            <span>Управляющая бутик-отеля, Сочи</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars">
+            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+          </div>
+          <blockquote>«Для кальянной нужен был &laquo;грот&raquo;, чтобы гости зависали и&nbsp;фотографировали. Команда предложила три эскиза, выбрали самый дерзкий. Результат превзошёл ожидания&nbsp;&mdash; выручка по&nbsp;вечерам выросла на&nbsp;треть, гости приходят &laquo;на&nbsp;стену&raquo;.»</blockquote>
+          <div class="testimonial-author">
+            <strong>Руслан Муратов</strong>
+            <span>Основатель сети lounge-баров</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1385,11 +1740,17 @@ p { color: var(--cream-dim); }
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 RockArt. Все права защищены.</p>
+        <p>&copy; 2026 RockArt. Все права защищены.</p>
         <p>Политика конфиденциальности</p>
       </div>
     </div>
   </footer>
+
+  <!-- STICKY FLOATING CTA -->
+  <a href="#contact" class="sticky-cta" id="stickyCta">
+    <i data-lucide="pencil-ruler"></i>
+    Получить эскиз
+  </a>
 
 <script>
 // ===== Initialize Lucide icons =====
@@ -1398,10 +1759,18 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
-  // ===== Header scroll effect =====
+  // ===== Header scroll effect + sticky CTA =====
   const header = document.getElementById('header');
+  const stickyCta = document.getElementById('stickyCta');
+  const contactSection = document.getElementById('contact');
   const onScroll = () => {
     header.classList.toggle('scrolled', window.scrollY > 50);
+    // Show sticky CTA after first viewport, hide near contact form
+    if (stickyCta && contactSection) {
+      const contactTop = contactSection.getBoundingClientRect().top;
+      const show = window.scrollY > window.innerHeight * 0.7 && contactTop > 200;
+      stickyCta.classList.toggle('show', show);
+    }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
