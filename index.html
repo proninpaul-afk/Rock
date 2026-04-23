@@ -431,7 +431,20 @@ p { color: var(--cream-dim); }
 .solution {
   background: var(--stone);
   position: relative;
+  background-image: url('assets/portfolio/slanec.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
+.solution::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(15,15,15,0.82);
+  pointer-events: none;
+  z-index: 0;
+}
+.solution .container { position: relative; z-index: 1; }
 .solution h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -685,7 +698,20 @@ p { color: var(--cream-dim); }
 .process {
   background: var(--black);
   position: relative;
+  background-image: url('assets/portfolio/slanec2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
+.process::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,0.88);
+  pointer-events: none;
+  z-index: 0;
+}
+.process .container { position: relative; z-index: 1; }
 .process h2 {
   text-align: center;
   margin-bottom: 60px;
@@ -1633,6 +1659,7 @@ p { color: var(--cream-dim); }
         <div class="trust-text">
           <strong>15 лет</strong>
           <span>в&nbsp;оформлении интерьеров</span>
+          <!-- с 2011 года -->
         </div>
       </div>
       <div class="trust-item reveal reveal-delay-1">
@@ -1752,46 +1779,37 @@ p { color: var(--cream-dim); }
         </div>
       </div>
 
-      <div class="origin-films reveal">
-        <div class="film-card">
-          <div class="film-card-photo">
-            <div class="film-card-photo-placeholder">фото со съёмок</div>
-          </div>
-          <i data-lucide="film"></i>
-          <div class="film-card-text">
-            <strong>Исторические драмы</strong>
-            <span>Пещеры, крепости, древние своды</span>
-          </div>
-        </div>
-        <div class="film-card">
-          <div class="film-card-photo">
-            <div class="film-card-photo-placeholder">фото со съёмок</div>
-          </div>
-          <i data-lucide="clapperboard"></i>
-          <div class="film-card-text">
-            <strong>Фантастика и&nbsp;сериалы</strong>
-            <span>Инопланетные ландшафты, руины</span>
-          </div>
-        </div>
-        <div class="film-card">
-          <div class="film-card-photo">
-            <div class="film-card-photo-placeholder">фото со съёмок</div>
-          </div>
-          <i data-lucide="video"></i>
-          <div class="film-card-text">
-            <strong>Онлайн-платформы</strong>
-            <span>Мосфильм, Москино, Кинопоиск, Okko</span>
+      <!-- Кино-карусель -->
+      <div class="origin-films reveal" style="display:block;">
+        <div class="kino-carousel-wrap" style="position:relative;overflow:hidden;border-radius:12px;">
+          <div class="kino-carousel" id="kinoCarousel" style="display:flex;gap:16px;transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);">
+            <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
+              <img src="assets/portfolio/kino-1.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
+            <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
+              <img src="assets/portfolio/kino-2.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
+            <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
+              <img src="assets/portfolio/kino-3.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
+            <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
+              <img src="assets/portfolio/kino-4.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
+            <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
+              <img src="assets/portfolio/kino-5.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
+            <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
+              <img src="assets/portfolio/kino-6.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
+            <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
+              <img src="assets/portfolio/kino-7.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
           </div>
         </div>
-        <div class="film-card">
-          <div class="film-card-photo">
-            <div class="film-card-photo-placeholder">фото со съёмок</div>
-          </div>
-          <i data-lucide="award"></i>
-          <div class="film-card-text">
-            <strong>Реклама и&nbsp;клипы</strong>
-            <span>Фактурные сцены и&nbsp;арт-объекты</span>
-          </div>
+        <div class="carousel-nav" style="margin-top:20px;">
+          <button class="carousel-btn" id="kinoPrev" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+          <div class="carousel-dots" id="kinoDots"></div>
+          <button class="carousel-btn" id="kinoNext" aria-label="Вперёд"><i data-lucide="chevron-right"></i></button>
         </div>
       </div>
     </div>
@@ -2144,7 +2162,7 @@ p { color: var(--cream-dim); }
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="logo">Rock<span>&amp;Stone</span></a>
-          <p>Декоративные скалы ручной работы из архитектурного бетона. Создаём уникальные интерьеры с 2004 года.</p>
+          <p>Декоративные скалы ручной работы из архитектурного бетона. Создаём уникальные интерьеры с 2011 года.</p>
         </div>
         <div class="footer-col">
           <h4>Навигация</h4>
@@ -2171,7 +2189,7 @@ p { color: var(--cream-dim); }
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото">
     <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">&times;</button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <img class="lightbox-img" id="lightboxImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
   </div>
 
   <!-- STICKY FLOATING CTA -->
@@ -2181,6 +2199,41 @@ p { color: var(--cream-dim); }
   </a>
 
 <script>
+// ===== Kino Carousel =====
+(function() {
+  function initKino() {
+    const kinoCarousel = document.getElementById('kinoCarousel');
+    const kinoPrev = document.getElementById('kinoPrev');
+    const kinoNext = document.getElementById('kinoNext');
+    const kinoDots = document.getElementById('kinoDots');
+    if (!kinoCarousel) return;
+
+    const kinoSlides = kinoCarousel.querySelectorAll('.kino-slide');
+    const kinoCount = kinoSlides.length;
+    let kinoIndex = 0;
+
+    kinoSlides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goKino(i));
+      kinoDots.appendChild(dot);
+    });
+
+    function goKino(idx) {
+      kinoIndex = (idx + kinoCount) % kinoCount;
+      const slideWidth = kinoSlides[0].offsetWidth + 16;
+      kinoCarousel.style.transform = 'translateX(-' + (kinoIndex * slideWidth) + 'px)';
+      kinoDots.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === kinoIndex);
+      });
+    }
+
+    if (kinoPrev) kinoPrev.addEventListener('click', function() { goKino(kinoIndex - 1); });
+    if (kinoNext) kinoNext.addEventListener('click', function() { goKino(kinoIndex + 1); });
+  }
+  document.addEventListener('DOMContentLoaded', initKino);
+})();
+
 // ===== Initialize Lucide icons =====
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof lucide !== 'undefined') {
@@ -2443,22 +2496,27 @@ document.addEventListener('DOMContentLoaded', () => {
       slides.forEach(s => { s.style.flex = '0 0 ' + slideW + 'px'; });
     }
 
-    // Build dots
-    slides.forEach((_, i) => {
-      const d = document.createElement('button');
-      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      d.setAttribute('aria-label', 'Слайд ' + (i + 1));
-      d.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(d);
-    });
-    const dots = dotsWrap.querySelectorAll('.carousel-dot');
+    // Build dots — only as many as scroll positions
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      const pv  = perView();
+      const max = Math.max(0, total - pv);
+      for (let i = 0; i <= max; i++) {
+        const d = document.createElement('button');
+        d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Слайд ' + (i + 1));
+        d.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(d);
+      }
+    }
+    buildDots();
 
     function goTo(idx) {
       const pv  = perView();
       const max = Math.max(0, total - pv);
       current   = Math.min(Math.max(idx, 0), max);
       carousel.style.transform = `translateX(-${current * (slideW + GAP)}px)`;
-      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
     }
 
     initSizes();
@@ -2466,7 +2524,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
-    window.addEventListener('resize', () => { initSizes(); goTo(current); });
+    window.addEventListener('resize', () => { initSizes(); buildDots(); goTo(current); });
 
     // Drag / swipe — track distance to distinguish click from drag
     let startX = 0, dragMoved = false;

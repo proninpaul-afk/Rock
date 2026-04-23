@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock&Stone — Roasted</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8;
+    --ink: #1a1510;
+    --ink-dim: #6b5f50;
+    --fire: oklch(58% 0.19 38);
+    --ember: oklch(72% 0.16 62);
+    --ash: oklch(88% 0.04 60);
+    --card: #fff8f0;
+    --border: rgba(26,21,16,0.12);
+    --gold: #c8a96e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 18px 0 14px;
+    text-align: center;
+    position: relative;
+  }
+  .masthead-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+  .masthead h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .masthead h1 em {
+    font-style: italic;
+    color: var(--fire);
+  }
+  .masthead-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.1em;
+  }
+  .verdict-bar {
+    background: var(--ink);
+    color: var(--bg);
+    text-align: center;
+    padding: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .verdict-bar span { color: var(--ember); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── SCORE HEADER ── */
+  .score-section {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .score-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+    border: 1.5px solid var(--ink);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .score-cell {
+    padding: 24px 20px;
+    border-right: 1.5px solid var(--ink);
+    text-align: center;
+  }
+  .score-cell:last-child { border-right: none; }
+  .score-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+  }
+  .score-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.6rem;
+    line-height: 1;
+    font-weight: 400;
+  }
+  .score-num.bad { color: var(--fire); }
+  .score-num.mid { color: var(--ember); }
+  .score-num.ok { color: oklch(55% 0.15 145); }
+  .score-sub {
+    font-size: 0.72rem;
+    color: var(--ink-dim);
+    margin-top: 4px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 48px 0 24px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    line-height: 1.15;
+  }
+  .section-title em { font-style: italic; color: var(--fire); }
+
+  /* ── ROAST CARDS ── */
+  .roast-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .roast-card {
+    background: var(--card);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 52px 1fr;
+  }
+  .roast-card-sev {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    background: var(--ink);
+    color: var(--bg);
+    writing-mode: vertical-rl;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 12px 0;
+    color: var(--ember);
+  }
+  .roast-card-sev.fatal { color: #ff6b4a; background: var(--ink); }
+  .roast-card-sev.medium { color: var(--ember); }
+  .roast-card-sev.mild { color: oklch(72% 0.12 100); }
+  .roast-card-body { padding: 20px 22px; }
+  .roast-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+  .roast-card-title em { font-style: italic; color: var(--fire); }
+  .roast-card-text {
+    font-size: 0.9rem;
+    color: var(--ink-dim);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .roast-card-text strong { color: var(--ink); font-weight: 600; }
+  .code-snippet {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    background: var(--ink);
+    color: #f0e8d8;
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin-top: 10px;
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+  .code-snippet .hl { color: #ff8c69; }
+  .code-snippet .ok { color: #a8d8a8; }
+  .code-snippet .dim { color: #888; }
+  .roast-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: rgba(26,21,16,0.07);
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+  }
+
+  /* ── HIGHLIGHT QUOTE ── */
+  .highlight-quote {
+    margin: 48px 0;
+    padding: 36px 40px;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 6px;
+    position: relative;
+  }
+  .highlight-quote::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 32px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 7rem;
+    line-height: 1;
+    color: var(--fire);
+    opacity: 0.6;
+  }
+  .highlight-quote p {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    line-height: 1.5;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+  .highlight-quote .attr {
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ember);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── WHAT'S GOOD ── */
+  .good-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .good-card {
+    padding: 20px 22px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: var(--card);
+  }
+  .good-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .good-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: oklch(55% 0.15 145);
+    flex-shrink: 0;
+  }
+  .good-card h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+  }
+  .good-card p {
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+    line-height: 1.65;
+  }
+
+  /* ── FINAL VERDICT ── */
+  .verdict {
+    padding: 56px 0 80px;
+    text-align: center;
+  }
+  .verdict-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 16px;
+  }
+  .verdict h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    margin-bottom: 24px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .verdict h2 em { font-style: italic; color: var(--fire); }
+  .verdict p {
+    max-width: 560px;
+    margin: 0 auto 32px;
+    color: var(--ink-dim);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .verdict-score {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 4rem;
+    color: var(--fire);
+    margin-bottom: 8px;
+  }
+  .verdict-score span { font-size: 1.5rem; color: var(--ink-dim); }
+  .verdict-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 2px solid var(--ink);
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 600px) {
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .score-cell:nth-child(2) { border-right: none; }
+    .score-cell:nth-child(3) { border-right: 1.5px solid var(--ink); border-top: 1.5px solid var(--ink); }
+    .score-cell:nth-child(4) { border-right: none; border-top: 1.5px solid var(--ink); }
+    .good-list { grid-template-columns: 1fr; }
+    .roast-card { grid-template-columns: 40px 1fr; }
+    .footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="verdict-bar">
+  Peer design review — proninpaul-afk/Rock — <span>Confidential</span>
+</div>
+
+<div class="masthead">
+  <div class="container">
+    <div class="masthead-label">Design Critique — Issue No. 001</div>
+    <h1>Rock&amp;<em>Roasted</em></h1>
+    <div class="masthead-meta">
+      <span>Subject: Rock&amp;Stone landing page</span>
+      <span>Reviewer: Claude</span>
+      <span>April 23, 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SCORES -->
+  <section class="score-section">
+    <div class="score-grid">
+      <div class="score-cell">
+        <div class="score-label">Visual Design</div>
+        <div class="score-num mid">6.5</div>
+        <div class="score-sub">Dark & moody. Works.</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Copy & Trust</div>
+        <div class="score-num bad">2/10</div>
+        <div class="score-sub">Self-reviewed. Literally.</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Code Quality</div>
+        <div class="score-num bad">4/10</div>
+        <div class="score-sub">2,503 lines. One file.</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Overall Honesty</div>
+        <div class="score-num bad">3/10</div>
+        <div class="score-sub">We need to talk.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: CREDIBILITY CRIMES -->
+  <div class="section-head">
+    <span class="section-num">01 —</span>
+    <h2 class="section-title">Credibility <em>Crimes</em></h2>
+  </div>
+
+  <div class="roast-list">
+
+    <div class="roast-card">
+      <div class="roast-card-sev fatal">FATAL</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">Testimonials</div>
+        <div class="roast-card-title">The First Reviewer is the <em>Owner</em></div>
+        <div class="roast-card-text">
+          The very first testimonial — introduced as <strong>"Реальные проекты, реальные люди"</strong> (Real projects, real people) — is from <strong>Павел Пронин</strong>, owner of a country house in Novaya Moskva. The GitHub repo is <strong>proninpaul-afk</strong>. Paul Pronin. AFK. Writing his own five-star review. The audacity is genuinely impressive.
+        </div>
+        <div class="code-snippet">
+<span class="dim">/* "Real projects. Real people." */</span>
+&lt;strong&gt;<span class="hl">Павел Пронин</span>&lt;/strong&gt;
+&lt;span&gt;Владелец загородного дома, Новая Москва&lt;/span&gt;
+
+<span class="dim">// github.com/</span><span class="hl">proninpaul</span><span class="dim">-afk</span>/Rock
+        </div>
+      </div>
+    </div>
+
+    <div class="roast-card">
+      <div class="roast-card-sev fatal">FATAL</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">Cinema Claims</div>
+        <div class="roast-card-title">"We work with Mosfilm" — <em>Zero Photos</em></div>
+        <div class="roast-card-text">
+          An entire section dedicated to cinematic prestige — Mosfilm, Moskino, Kinopoisk, Okko — with <strong>four dedicated film cards</strong>. Every single one has a placeholder that says "фото со съёмок" (photo from set). You're telling me you've worked on Russian blockbusters shot in 4K, and you cannot produce <em>one photograph</em> from a set? Not one?
+        </div>
+        <div class="code-snippet">
+&lt;div class="film-card-photo-placeholder"&gt;
+  <span class="hl">фото со съёмок</span>  <span class="dim">← × 4</span>
+&lt;/div&gt;
+
+<span class="dim">// "Our rocks survived 4K scrutiny."</span>
+<span class="dim">// "Our photos did not survive any scrutiny at all."</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="roast-card">
+      <div class="roast-card-sev fatal">FATAL</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">Math</div>
+        <div class="roast-card-title">15 Years. Since 2004. <em>Pick One.</em></div>
+        <div class="roast-card-text">
+          The trust strip proudly announces <strong>"15 лет в оформлении интерьеров"</strong> (15 years in interior decoration). The footer says <strong>"с 2004 года"</strong> (since 2004). It's 2026. That's 22 years. Either they forgot to update the trust strip, or time works differently in the rock business. One of these is lying and they're right next to each other on the page.
+        </div>
+        <div class="code-snippet">
+<span class="ok">trust-strip:</span>  "15 лет" в оформлении интерьеров
+<span class="hl">footer:</span>       "с 2004 года"
+<span class="hl">actual math:</span>  2026 − 2004 = <span class="hl">22 года</span>
+
+<span class="dim">// 7 years of experience unaccounted for.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="roast-card">
+      <div class="roast-card-sev medium">MEDIUM</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">Instagram</div>
+        <div class="roast-card-title">"Инстаграмный фон" — in <em>Russia</em></div>
+        <div class="roast-card-text">
+          The restaurant/lobby card promises an <strong>"инстаграмный фон"</strong> (Instagram background) that generates free marketing. Instagram has been banned in Russia since March 2022 as an "extremist organization." Selling premium luxury rock work, but the copywriting hasn't been updated in 4 years.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- QUOTE -->
+  <div class="highlight-quote">
+    <p>"Our rocks singlehandedly survived 4K camera scrutiny. Our contact form does not survive a single click."</p>
+    <div class="attr">— Rock&Stone, unknowingly</div>
+  </div>
+
+  <!-- SECTION 2: TECHNICAL CRIMES -->
+  <div class="section-head">
+    <span class="section-num">02 —</span>
+    <h2 class="section-title">Technical <em>Disasters</em></h2>
+  </div>
+
+  <div class="roast-list">
+
+    <div class="roast-card">
+      <div class="roast-card-sev fatal">FATAL</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">Contact Form</div>
+        <div class="roast-card-title">The Form is a <em>Prop</em></div>
+        <div class="roast-card-text">
+          There is an elaborate contact form with validation, loading states, error handling, a success screen, and even an animation spinner. It sends to a Telegram bot. The bot token is an <strong>empty string</strong>. The form never sends anything — it silently falls back to opening a Telegram link. The form is decorative. Like a movie prop. Fitting, perhaps.
+        </div>
+        <div class="code-snippet">
+const TELEGRAM_BOT_TOKEN = <span class="hl">''</span>; <span class="dim">// "например: '1234567890:AAH_xxx...'"</span>
+const TELEGRAM_CHAT_ID   = <span class="hl">''</span>; <span class="dim">// "например: '123456789'"</span>
+
+<span class="dim">// ~80 lines of form logic</span>
+<span class="dim">// → always falls back to opening t.me link</span>
+<span class="dim">// → the spinner spins for no one</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="roast-card">
+      <div class="roast-card-sev fatal">FATAL</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">Architecture</div>
+        <div class="roast-card-title">2,503 Lines. One File. <em>No Regrets.</em></div>
+        <div class="roast-card-text">
+          The entire website — CSS, HTML, JS, inline SVGs, base64 encoded noise textures, a complete Telegram API integration, FAQ accordion, carousel with drag support, lightbox, tab switcher, scroll observer, sticky CTA logic — all lovingly packed into a <strong>single 2,503-line index.html</strong>. An absolute unit of a file. Scrolling the source code is itself a journey.
+        </div>
+        <div class="code-snippet">
+$ wc -l index.html
+<span class="hl">    2503</span> index.html
+
+<span class="dim">// CSS:        ~900 lines</span>
+<span class="dim">// HTML:       ~500 lines</span>
+<span class="dim">// JavaScript: ~300 lines of working code</span>
+<span class="dim">// Form logic: ~200 lines sending to nowhere</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="roast-card">
+      <div class="roast-card-sev medium">MEDIUM</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">Branding</div>
+        <div class="roast-card-title">The GitHub Username is <em>proninpaul-afk</em></div>
+        <div class="roast-card-text">
+          You are selling premium handcrafted decorative rock installations worth 200,000–350,000 rubles. You promise to respond in <strong>"15 minutes"</strong>. Your GitHub username ends in <strong>afk</strong>. Away. From. Keyboard. This is not a roast observation — this is a lifestyle contradiction.
+        </div>
+        <div class="code-snippet">
+github.com/<span class="hl">proninpaul-afk</span>/Rock
+
+<span class="dim">// site promise: "ответим за 15 минут"</span>
+<span class="dim">// username reality: -afk</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="roast-card">
+      <div class="roast-card-sev medium">MEDIUM</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">CSS Variables</div>
+        <div class="roast-card-title"><code style="font-family:'DM Mono',monospace;font-size:0.9em">--black: #0f0f0f</code> — Not <em>Actually Black</em></div>
+        <div class="roast-card-text">
+          A purely symbolic complaint, but: the CSS variable named <code style="font-family:'DM Mono',monospace;font-size:0.85em">--black</code> is <code style="font-family:'DM Mono',monospace;font-size:0.85em">#0f0f0f</code>. True black is <code style="font-family:'DM Mono',monospace;font-size:0.85em">#000000</code>. This is the lightest shade of grey they could've gotten away with calling black. The site is built on a lie, structurally, from line one.
+        </div>
+        <div class="code-snippet">
+--black: <span class="hl">#0f0f0f</span>;  <span class="dim">/* coward grey */</span>
+--stone: <span class="dim">#1a1a1a</span>;
+--stone-light: <span class="dim">#252525</span>;
+<span class="dim">/* none of these are black. rock sold separately. */</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="roast-card">
+      <div class="roast-card-sev mild">MILD</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">Design Detail</div>
+        <div class="roast-card-title">A Noise Texture at <em>3% Opacity</em></div>
+        <div class="roast-card-text">
+          There is a base64-encoded SVG fractal noise texture applied across multiple sections via a <code style="font-family:'DM Mono',monospace;font-size:0.85em">.noise::before</code> pseudo-element. Its opacity is <strong>0.03</strong>. It is completely invisible to 99% of users on 99% of screens. But it's there. Someone cared. We respect the commitment even as we question the impact.
+        </div>
+        <div class="code-snippet">
+.noise::before {
+  background-image: url("data:image/svg+xml, ... <span class="dim">feTurbulence</span> ...");
+  opacity: <span class="hl">0.03</span>; <span class="dim">/* ghost texture, whisper aesthetic */</span>
+}
+<span class="dim">// human eye threshold: ~0.05</span>
+<span class="dim">// this texture: technically present</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="roast-card">
+      <div class="roast-card-sev mild">MILD</div>
+      <div class="roast-card-body">
+        <div class="roast-tag">Contact Options</div>
+        <div class="roast-card-title">There is a <em>max.ru</em> Link</div>
+        <div class="roast-card-text">
+          Alongside Telegram and Phone, the contact section features a link to <strong>max.ru</strong> — a messenger approximately 11 people use. The URL is not a clean handle. It is a 70-character authentication token that looks like a cryptographic hash. It is presented in a premium gold-bordered card next to a Playfair Display headline.
+        </div>
+        <div class="code-snippet">
+href="https://max.ru/u/<span class="hl">f9LHodD0cOLOsQlMC-uoBXkYI--w810h
+RyP39nT_pgDS_UAQV_8Edf7sBdo</span>"
+
+<span class="dim">// &lt;strong&gt;Max&lt;/strong&gt;</span>
+<span class="dim">// &lt;span&gt;Написать в мессенджер&lt;/span&gt;</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 3: WHAT'S ACTUALLY GOOD -->
+  <div class="section-head">
+    <span class="section-num">03 —</span>
+    <h2 class="section-title">What's Actually <em>Good</em></h2>
+  </div>
+
+  <div class="good-list">
+    <div class="good-card">
+      <div class="good-card-head">
+        <div class="good-dot"></div>
+        <h4>Real Photography</h4>
+      </div>
+      <p>The portfolio images are genuinely impressive. The work speaks for itself — textured, tactile, cinematic. The product is real and the photos prove it. Put more of these everywhere and delete half the copy.</p>
+    </div>
+    <div class="good-card">
+      <div class="good-card-head">
+        <div class="good-dot"></div>
+        <h4>Solid Visual System</h4>
+      </div>
+      <p>Dark background, warm cream, gold accents — the color palette is coherent and appropriate for a premium craft product. Playfair Display + Inter is a reliable pairing. The bones are good.</p>
+    </div>
+    <div class="good-card">
+      <div class="good-card-head">
+        <div class="good-dot"></div>
+        <h4>Thoughtful Interactions</h4>
+      </div>
+      <p>The carousel has drag support. The FAQ accordion animates properly. The sticky CTA logic is nuanced (hides near contact section). Someone actually thought about UX. It shows.</p>
+    </div>
+    <div class="good-card">
+      <div class="good-card-head">
+        <div class="good-dot"></div>
+        <h4>Smart Section Structure</h4>
+      </div>
+      <p>Problem → Solution → Origin → Process → Segments → Portfolio → Testimonials → FAQ → Pricing → CTA is a well-structured conversion funnel. The narrative logic is sound, even if the content sometimes isn't.</p>
+    </div>
+    <div class="good-card">
+      <div class="good-card-head">
+        <div class="good-dot"></div>
+        <h4>The Cinema Angle is Genuinely Great</h4>
+      </div>
+      <p>"We make rocks for movies, now we make them for your home" is a <em>fantastic</em> USP. It's differentiated, credible in principle, and memorable. Just needs real photos to back it up.</p>
+    </div>
+    <div class="good-card">
+      <div class="good-card-head">
+        <div class="good-dot"></div>
+        <h4>Responsive Layouts</h4>
+      </div>
+      <p>Media queries are applied consistently. The mobile grid fallbacks are sensible. This is a single-developer project and the responsive work is better than many agency sites three times the budget.</p>
+    </div>
+  </div>
+
+  <!-- FINAL VERDICT -->
+  <section class="verdict">
+    <div class="verdict-eyebrow">Final Verdict</div>
+    <h2>Good bones, <em>shaky foundations</em> — fix the trust layer and this site works</h2>
+    <p>
+      The design direction is solid. The product is clearly real and good. But the credibility infrastructure — fake-ish testimonials, empty film placeholders, a broken contact form, and contradictory dates — undermines every legitimate claim. The rocks survive 4K. The trust signals don't survive inspection.
+    </p>
+    <div class="verdict-score">5.2 <span>/ 10</span></div>
+    <div class="verdict-label">Would commission a rock. Would not trust the reviews.</div>
+  </section>
+
+</div>
+
+<div class="container">
+  <div class="footer">
+    <span>Rock&amp;Stone Peer Review — Issue 001</span>
+    <span>proninpaul-afk/Rock · April 2026</span>
+    <span>No rocks were harmed</span>
+  </div>
+</div>
+
+</body>
+</html>
