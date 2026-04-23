@@ -225,7 +225,7 @@ p { color: var(--cream-dim); }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('assets/portfolio/work-02.jpg');
+  background-image: url('assets/portfolio/slanec2.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -478,6 +478,12 @@ p { color: var(--cream-dim); }
   font-size: 1.2rem;
 }
 .solution-card-body p { font-size: 0.9rem; }
+.solution-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .solution-img-placeholder {
   width: 100%;
   height: 100%;
@@ -922,6 +928,71 @@ p { color: var(--cream-dim); }
 @media (max-width: 768px) {
   .portfolio-grid { grid-template-columns: 1fr; }
   .portfolio-card { min-height: 260px; }
+}
+
+/* ===== PORTFOLIO CAROUSEL ===== */
+.portfolio-carousel-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+}
+.portfolio-carousel {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  cursor: grab;
+  user-select: none;
+}
+.portfolio-carousel.dragging { cursor: grabbing; transition: none; }
+.portfolio-slide {
+  flex: 0 0 calc(33.333% - 11px);
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--stone-light);
+}
+.portfolio-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  transition: transform 0.4s ease;
+}
+.portfolio-slide:hover img { transform: scale(1.04); }
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+.carousel-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--stone);
+  border: 1px solid rgba(200,169,110,0.25);
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+  flex-shrink: 0;
+}
+.carousel-btn:hover { background: var(--stone-light); border-color: var(--gold); transform: scale(1.08); }
+.carousel-btn i { width: 20px; height: 20px; }
+.carousel-dots {
+  display: flex; gap: 8px;
+}
+.carousel-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--stone-mid);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.carousel-dot.active { background: var(--gold); transform: scale(1.4); }
+@media (max-width: 768px) {
+  .portfolio-slide { flex: 0 0 calc(80% - 8px); }
 }
 
 /* ===== 7. SOCIAL PROOF ===== */
@@ -1549,7 +1620,7 @@ p { color: var(--cream-dim); }
       <div class="problem-grid">
         <div class="problem-card reveal">
           <div class="problem-card-img">
-            <div class="problem-card-img-placeholder">фото: голые стены / гипсокартон</div>
+            <img src="assets/portfolio/gipsocarton.png" alt="Гипсокартон — плоская отделка без характера">
           </div>
           <div class="icon-wrap"><i data-lucide="copy"></i></div>
           <h3>Всё одинаковое</h3>
@@ -1557,7 +1628,7 @@ p { color: var(--cream-dim); }
         </div>
         <div class="problem-card reveal reveal-delay-1">
           <div class="problem-card-img">
-            <div class="problem-card-img-placeholder">фото: скучный интерьер без акцента</div>
+            <img src="assets/portfolio/bedroom.png" alt="Спальня без акцента — интерьер забывается">
           </div>
           <div class="icon-wrap"><i data-lucide="eye-off"></i></div>
           <h3>Нет акцента</h3>
@@ -1565,7 +1636,7 @@ p { color: var(--cream-dim); }
         </div>
         <div class="problem-card reveal reveal-delay-2">
           <div class="problem-card-img">
-            <div class="problem-card-img-placeholder">фото: плоская плитка / штукатурка</div>
+            <img src="assets/portfolio/bathroom.png" alt="Ванная без фактуры — плоско и безлично">
           </div>
           <div class="icon-wrap"><i data-lucide="hand"></i></div>
           <h3>Нет тактильности</h3>
@@ -1583,7 +1654,7 @@ p { color: var(--cream-dim); }
       <div class="solution-grid">
         <a href="#contact" class="solution-card reveal">
           <div class="solution-card-image">
-            <div class="solution-img-placeholder">фото: гостиная с камином</div>
+            <img src="assets/portfolio/fireplace.jpg" alt="Гостиная с декоративной скалой у камина">
           </div>
           <div class="solution-card-body">
             <h3>Гостиная / Камин</h3>
@@ -1593,7 +1664,7 @@ p { color: var(--cream-dim); }
         </a>
         <a href="#contact" class="solution-card reveal reveal-delay-1">
           <div class="solution-card-image">
-            <div class="solution-img-placeholder">фото: ванная / spa-зона</div>
+            <img src="assets/portfolio/SPA.png" alt="SPA-зона с декоративной скалой из арт-бетона">
           </div>
           <div class="solution-card-body">
             <h3>Ванная / SPA-зона</h3>
@@ -1603,7 +1674,7 @@ p { color: var(--cream-dim); }
         </a>
         <a href="#contact" class="solution-card reveal reveal-delay-2">
           <div class="solution-card-image">
-            <div class="solution-img-placeholder">фото: ресторан / лобби отеля</div>
+            <img src="assets/portfolio/reception.png" alt="Ресторан или лобби отеля с декоративной скалой">
           </div>
           <div class="solution-card-body">
             <h3>Ресторан / Лобби отеля</h3>
@@ -1621,12 +1692,12 @@ p { color: var(--cream-dim); }
       <div class="origin-head">
         <span class="origin-eyebrow reveal">Откуда наше мастерство</span>
         <h2 class="reveal reveal-delay-1">Мы создаём декорации и реквизит<br>для&nbsp;<span class="text-gold">российского кино</span></h2>
-        <p class="origin-sub reveal reveal-delay-2">Всё, что вы видите на экране&nbsp;&mdash; скалы, пещеры, своды крепостей, фактурные стены&nbsp;&mdash; часто это созданные с нуля интерьеры и объекты, в которых мы принимаем участие. Мы работаем с Мосфильмом и Мос-кино. И теперь ту же магию мы можем повторить у вас дома.</p>
+        <p class="origin-sub reveal reveal-delay-2">Всё, что вы видите на экране&nbsp;&mdash; скалы, пещеры, своды крепостей, фактурные стены&nbsp;&mdash; часто это созданные с нуля интерьеры и объекты, в которых мы принимаем участие. Мы работаем с Мосфильмом и Москино. И теперь ту же магию мы можем повторить у вас дома.</p>
       </div>
 
       <div class="origin-grid">
         <div class="origin-story reveal">
-          <p>Арт-бетон&nbsp;&mdash; давно известная технология. Но чтобы она работала в&nbsp;кино, фактура должна выдержать крупный план в&nbsp;4К: никакой дешёвой фактуры, никаких швов, никакой искусственности. Именно такой стандарт мы&nbsp;освоили на&nbsp;съёмочных площадках <strong>Мосфильма и&nbsp;Мос-кино</strong>.</p>
+          <p>Арт-бетон&nbsp;&mdash; давно известная технология. Но чтобы она работала в&nbsp;кино, фактура должна выдержать крупный план в&nbsp;4К: никакой дешёвой фактуры, никаких швов, никакой искусственности. Именно такой стандарт мы&nbsp;освоили на&nbsp;съёмочных площадках <strong>Мосфильма и&nbsp;Москино</strong>.</p>
           <p>Когда дизайнеры интерьеров увидели наши кинодекорации и&nbsp;начали приходить за&nbsp;фактурой для жилых проектов, мы&nbsp;поняли: <strong>та&nbsp;же техника работает в&nbsp;доме, ресторане, спа-зоне</strong>. Только теперь это не&nbsp;снимают&nbsp;&mdash; с&nbsp;этим живут каждый день.</p>
           <p>Мы&nbsp;по-прежнему работаем в&nbsp;кино параллельно с&nbsp;интерьерными проектами. Каждая новая съёмка&nbsp;&mdash; это новые фактуры, оттенки и&nbsp;техники, которые потом приходят к&nbsp;вам.</p>
         </div>
@@ -1663,7 +1734,7 @@ p { color: var(--cream-dim); }
           <i data-lucide="video"></i>
           <div class="film-card-text">
             <strong>Онлайн-платформы</strong>
-            <span>Мосфильм, Мос-кино, Кинопоиск, Okko</span>
+            <span>Мосфильм, Москино, Кинопоиск, Okko</span>
           </div>
         </div>
         <div class="film-card">
@@ -1805,52 +1876,26 @@ p { color: var(--cream-dim); }
   <section class="portfolio section-padding noise" id="portfolio">
     <div class="container">
       <h2 class="reveal">Примеры <span class="text-gold">работ</span></h2>
-      <p class="portfolio-intro reveal reveal-delay-1">Здесь можно показать реальные объекты в интерьере: крупные планы фактуры, общие ракурсы и то, как декоративная скала работает в готовом пространстве.</p>
-      <div class="portfolio-grid">
-        <div class="portfolio-card reveal" data-file="work-01.jpg" style="--portfolio-image: url('assets/portfolio/work-01.jpg'); --portfolio-fallback: radial-gradient(ellipse at 25% 35%, rgba(85,75,60,0.5), transparent 65%), radial-gradient(ellipse at 75% 70%, rgba(55,50,40,0.4), transparent 60%), linear-gradient(155deg, #1c1a17, #0e0d0b);">
-          <div class="portfolio-photo" aria-hidden="true"></div>
-          <div class="portfolio-label">
-            <h4>Фасад здания</h4>
-            <span>Коммерческий объект</span>
-          </div>
-        </div>
-        <div class="portfolio-card reveal reveal-delay-1" data-file="work-02.jpg" style="--portfolio-image: url('assets/portfolio/work-02.jpg'); --portfolio-fallback: radial-gradient(ellipse at 40% 50%, rgba(65,70,80,0.5), transparent 65%), radial-gradient(ellipse at 70% 30%, rgba(50,55,65,0.3), transparent 60%), linear-gradient(165deg, #17191c, #0c0d0e);">
-          <div class="portfolio-photo" aria-hidden="true"></div>
-          <div class="portfolio-label">
-            <h4>Гостиная</h4>
-            <span>Частный дом</span>
-          </div>
-        </div>
-        <div class="portfolio-card reveal reveal-delay-2" data-file="work-03.jpg" style="--portfolio-image: url('assets/portfolio/work-03.jpg'); --portfolio-fallback: radial-gradient(ellipse at 55% 40%, rgba(60,75,70,0.5), transparent 65%), radial-gradient(ellipse at 25% 70%, rgba(45,55,50,0.3), transparent 60%), linear-gradient(170deg, #151a18, #0b0e0c);">
-          <div class="portfolio-photo" aria-hidden="true"></div>
-          <div class="portfolio-label">
-            <h4>Бар</h4>
-            <span>Коммерческий объект</span>
-          </div>
-        </div>
-        <div class="portfolio-card reveal" data-file="work-04.jpg" style="--portfolio-image: url('assets/portfolio/work-04.jpg'); --portfolio-fallback: radial-gradient(ellipse at 60% 60%, rgba(80,65,55,0.5), transparent 65%), radial-gradient(ellipse at 20% 30%, rgba(60,50,40,0.4), transparent 60%), linear-gradient(150deg, #1a1715, #0d0c0a);">
-          <div class="portfolio-photo" aria-hidden="true"></div>
-          <div class="portfolio-label">
-            <h4>Ванная / SPA</h4>
-            <span>Частный дом</span>
-          </div>
-        </div>
-        <div class="portfolio-card reveal reveal-delay-1" data-file="work-05.jpg" style="--portfolio-image: url('assets/portfolio/work-05.jpg'); --portfolio-fallback: radial-gradient(ellipse at 35% 55%, rgba(70,60,75,0.5), transparent 65%), radial-gradient(ellipse at 70% 40%, rgba(55,45,60,0.3), transparent 60%), linear-gradient(160deg, #191720, #0d0c10);">
-          <div class="portfolio-photo" aria-hidden="true"></div>
-          <div class="portfolio-label">
-            <h4>Фотозона</h4>
-            <span>Коммерческий объект</span>
-          </div>
-        </div>
-        <div class="portfolio-card reveal reveal-delay-2" data-file="work-06.jpg" style="--portfolio-image: url('assets/portfolio/work-06.jpg'); --portfolio-fallback: radial-gradient(ellipse at 50% 35%, rgba(75,70,60,0.5), transparent 65%), radial-gradient(ellipse at 30% 65%, rgba(55,50,45,0.4), transparent 60%), linear-gradient(145deg, #1b1916, #0e0d0b);">
-          <div class="portfolio-photo" aria-hidden="true"></div>
-          <div class="portfolio-label">
-            <h4>Квеструм</h4>
-            <span>Коммерческий объект</span>
-          </div>
+      <div class="portfolio-carousel-wrap reveal reveal-delay-1">
+        <div class="portfolio-carousel" id="portfolioCarousel">
+          <div class="portfolio-slide"><img src="assets/portfolio/work-01.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-02.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-03.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-04.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-05.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-06.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-07.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-08.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-09.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-10.jpg" alt="Работа Rock&Stone"></div>
+          <div class="portfolio-slide"><img src="assets/portfolio/work-11.png" alt="Работа Rock&Stone"></div>
         </div>
       </div>
-      <p class="portfolio-note reveal">Каждая работа создаётся вручную под конкретное пространство, поэтому рельеф, глубина и оттенки всегда остаются уникальными.</p>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="carouselPrev" aria-label="Назад"><i data-lucide="chevron-left"></i></button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" id="carouselNext" aria-label="Вперёд"><i data-lucide="chevron-right"></i></button>
+      </div>
     </div>
   </section>
 
@@ -1894,39 +1939,6 @@ p { color: var(--cream-dim); }
           </div>
         </div>
 
-        <div class="testimonial-card reveal">
-          <div class="stars">
-            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-          </div>
-          <blockquote>«Работали с&nbsp;командой на&nbsp;историческом сериале&nbsp;&mdash; нужны были своды пещеры, которые выдержат крупный план. Сделали быстро, фактура не&nbsp;выдала себя даже в&nbsp;4К. С&nbsp;тех пор зову их&nbsp;на&nbsp;каждый проект, где нужен настоящий камень.»</blockquote>
-          <div class="testimonial-author">
-            <strong>Дмитрий Варшавский</strong>
-            <span>Художник-постановщик, кинопроизводство</span>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="stars">
-            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-          </div>
-          <blockquote>«В&nbsp;спа-зоне отеля хотели камень&nbsp;&mdash; но&nbsp;натуральный тяжёлый и&nbsp;дорогой. Ребята сделали арт-бетон, который гости принимают за&nbsp;настоящую породу. Уже полгода ни&nbsp;одной претензии&nbsp;&mdash; ни&nbsp;по&nbsp;влаге, ни&nbsp;по&nbsp;износу.»</blockquote>
-          <div class="testimonial-author">
-            <strong>Елена Тихонова</strong>
-            <span>Управляющая бутик-отеля, Сочи</span>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal reveal-delay-2">
-          <div class="stars">
-            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-          </div>
-          <blockquote>«Для кальянной нужен был &laquo;грот&raquo;, чтобы гости зависали и&nbsp;фотографировали. Команда предложила три эскиза, выбрали самый дерзкий. Результат превзошёл ожидания&nbsp;&mdash; выручка по&nbsp;вечерам выросла на&nbsp;треть, гости приходят &laquo;на&nbsp;стену&raquo;.»</blockquote>
-          <div class="testimonial-author">
-            <strong>Руслан Муратов</strong>
-            <span>Основатель сети lounge-баров</span>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -1943,7 +1955,7 @@ p { color: var(--cream-dim); }
           </button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              Стоимость зависит от площади поверхности, сложности рельефа и выбранной цветовой палитры. После бесплатного замера составляем смету — без скрытых платежей. Средний проект для квартиры: от&nbsp;120&nbsp;000&nbsp;₽, для коммерческого объекта: от&nbsp;350&nbsp;000&nbsp;₽.
+              Стоимость зависит от площади поверхности, сложности рельефа и выбранной цветовой палитры. После бесплатного замера составляем смету — без скрытых платежей. Средний проект для квартиры: от&nbsp;200&nbsp;000&nbsp;₽, для коммерческого объекта: от&nbsp;350&nbsp;000&nbsp;₽.
             </div>
           </div>
         </div>
@@ -1976,7 +1988,7 @@ p { color: var(--cream-dim); }
           </button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              Технически — да, скалу можно демонтировать, стену восстановить и выровнять. Но за 20 лет практики ни один клиент не попросил это сделать. Именно поэтому мы предлагаем бесплатный эскиз — чтобы вы были уверены в решении до начала работ.
+              Технически — да, скалу можно демонтировать, стену восстановить и выровнять. Но за всю нашу практику ни один клиент не попросил это сделать. Именно поэтому мы предлагаем бесплатный эскиз — чтобы вы были уверены в решении до начала работ.
             </div>
           </div>
         </div>
@@ -2004,7 +2016,7 @@ p { color: var(--cream-dim); }
         <div class="pricing-card reveal">
           <div class="pricing-icon"><i data-lucide="home"></i></div>
           <h3>Квартира / Частный дом</h3>
-          <div class="pricing-amount">от&nbsp;<strong>120 000&nbsp;₽</strong></div>
+          <div class="pricing-amount">от&nbsp;<strong>200 000&nbsp;₽</strong></div>
           <ul class="pricing-list">
             <li><i data-lucide="check"></i>Гостиная, спальня, прихожая</li>
             <li><i data-lucide="check"></i>Ванная комната, SPA-зона</li>
@@ -2031,7 +2043,7 @@ p { color: var(--cream-dim); }
           <h3>Кинодекорации / Реквизит</h3>
           <div class="pricing-amount"><strong>по запросу</strong></div>
           <ul class="pricing-list">
-            <li><i data-lucide="check"></i>Мосфильм, Мос-кино, павильоны</li>
+            <li><i data-lucide="check"></i>Мосфильм, Москино, павильоны</li>
             <li><i data-lucide="check"></i>Сериалы, полный метр, реклама</li>
             <li><i data-lucide="check"></i>Фактура для съёмок в&nbsp;4К</li>
             <li><i data-lucide="check"></i>Сжатые сроки — без потери качества</li>
@@ -2081,7 +2093,7 @@ p { color: var(--cream-dim); }
         <a href="https://max.ru/u/f9LHodD0cOLOsQlMC-uoBXkYI--w810hRyP39nT_pgDS_UAQV_8Edf7sBdo" target="_blank" rel="noopener" class="cta-contact-card">
           <i data-lucide="message-circle"></i>
           <div>
-            <strong>Макс</strong>
+            <strong>Max</strong>
             <span>Написать в&nbsp;мессенджер</span>
           </div>
         </a>
@@ -2345,6 +2357,67 @@ document.addEventListener('DOMContentLoaded', () => {
       formSubmitBtn.disabled = false;
     }
   });
+
+  // ===== Portfolio Carousel =====
+  const carousel = document.getElementById('portfolioCarousel');
+  const prevBtn  = document.getElementById('carouselPrev');
+  const nextBtn  = document.getElementById('carouselNext');
+  const dotsWrap = document.getElementById('carouselDots');
+
+  if (carousel) {
+    const slides = carousel.querySelectorAll('.portfolio-slide');
+    const total  = slides.length;
+    const perView = () => window.innerWidth <= 768 ? 1 : 3;
+    let current = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Слайд ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    });
+
+    const dots = dotsWrap.querySelectorAll('.carousel-dot');
+
+    function getSlideWidth() {
+      const gap = 16;
+      const pv = perView();
+      const wrap = carousel.parentElement.offsetWidth;
+      return (wrap - gap * (pv - 1)) / pv + gap;
+    }
+
+    function goTo(idx) {
+      const pv = perView();
+      const max = Math.max(0, total - pv);
+      current = Math.min(Math.max(idx, 0), max);
+      carousel.style.transform = `translateX(-${current * getSlideWidth()}px)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+    window.addEventListener('resize', () => goTo(current));
+
+    // Drag / swipe
+    let startX = 0, isDragging = false;
+    carousel.addEventListener('mousedown', e => { isDragging = true; startX = e.pageX; carousel.classList.add('dragging'); });
+    window.addEventListener('mouseup', e => {
+      if (!isDragging) return;
+      isDragging = false;
+      carousel.classList.remove('dragging');
+      const diff = startX - e.pageX;
+      if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    });
+    carousel.addEventListener('touchstart', e => { startX = e.touches[0].pageX; }, { passive: true });
+    carousel.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].pageX;
+      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+    });
+
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  }
 });
 </script>
 </body>
