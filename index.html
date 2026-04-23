@@ -229,6 +229,7 @@ p { color: var(--cream-dim); }
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  opacity: 1;
   filter: brightness(0.38) saturate(0.7);
   transform: scale(1.04);
   z-index: 0;
@@ -951,12 +952,12 @@ p { color: var(--cream-dim); }
   border-radius: 10px;
   overflow: hidden;
   background: var(--stone-light);
+  cursor: zoom-in;
 }
 .portfolio-slide img {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
-  pointer-events: none;
   transition: transform 0.4s ease;
 }
 .portfolio-slide:hover img { transform: scale(1.04); }
@@ -1542,6 +1543,51 @@ p { color: var(--cream-dim); }
 @media (max-width: 768px) {
   .footer-grid { grid-template-columns: 1fr; gap: 30px; }
 }
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.93);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox-img {
+  max-width: 92vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+  cursor: default;
+  animation: lb-in 0.22s ease;
+}
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.lightbox-close {
+  position: absolute;
+  top: 18px; right: 24px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  width: 44px; height: 44px;
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.2); }
+.problem-card-img img,
+.solution-card-image img {
+  cursor: zoom-in;
+}
 </style>
 </head>
 <body>
@@ -1659,7 +1705,7 @@ p { color: var(--cream-dim); }
           <div class="solution-card-body">
             <h3>Гостиная / Камин</h3>
             <p>Скала становится центром притяжения: гости замирают, фотографируют, спрашивают «кто делал».</p>
-            <div class="solution-price">от&nbsp;<strong>120 000&nbsp;₽</strong></div>
+            <div class="solution-price">от&nbsp;<strong>200 000&nbsp;₽</strong></div>
           </div>
         </a>
         <a href="#contact" class="solution-card reveal reveal-delay-1">
@@ -1669,7 +1715,7 @@ p { color: var(--cream-dim); }
           <div class="solution-card-body">
             <h3>Ванная / SPA-зона</h3>
             <p>Натуральная текстура камня превращает ванную комнату в&nbsp;приватный спа-ритуал каждый день.</p>
-            <div class="solution-price">от&nbsp;<strong>150 000&nbsp;₽</strong></div>
+            <div class="solution-price">от&nbsp;<strong>200 000&nbsp;₽</strong></div>
           </div>
         </a>
         <a href="#contact" class="solution-card reveal reveal-delay-2">
@@ -1907,20 +1953,14 @@ p { color: var(--cream-dim); }
       <div class="testimonials-grid">
 
         <div class="testimonial-card reveal">
-          <div class="stars">
-            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-          </div>
-          <blockquote>«Долго сомневались&nbsp;&mdash; всё-таки необратимое решение. Но&nbsp;эскиз убедил на&nbsp;100%, а&nbsp;история ребят про кино сняла последние страхи&nbsp;&mdash; мы&nbsp;понимали, что это не&nbsp;«бригада из&nbsp;объявления». Теперь камин со&nbsp;скалой&nbsp;&mdash; главная точка притяжения в&nbsp;доме.»</blockquote>
+          <blockquote>«Хотел сделать имитацию скалы в&nbsp;подвале, но&nbsp;не&nbsp;до&nbsp;конца понимал итог. Андрей и&nbsp;Лиана предложили эскиз, в&nbsp;процессе советовались и&nbsp;при этом опирались на&nbsp;свою экспертизу, честно направляя решения. Работали чётко: всё согласовали заранее, приезжали вовремя, после себя оставляли порядок. За&nbsp;5&nbsp;дней сделали результат, который превзошёл ожидания&nbsp;&mdash; теперь ощущение, что дом стоит на&nbsp;скале. Рекомендую.»</blockquote>
           <div class="testimonial-author">
-            <strong>Алексей Корнилов</strong>
-            <span>Владелец загородного дома, Новая Рига</span>
+            <strong>Павел Пронин</strong>
+            <span>Владелец загородного дома, Новая Москва</span>
           </div>
         </div>
 
         <div class="testimonial-card reveal reveal-delay-1">
-          <div class="stars">
-            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-          </div>
           <blockquote>«Скала в&nbsp;зале ресторана стала нашей визитной карточкой. Гости фотографируются на&nbsp;фоне стены каждый вечер&nbsp;&mdash; это лучшая реклама, которую мы&nbsp;получали. Сделали всё точно в&nbsp;срок к&nbsp;открытию, без единого переноса.»</blockquote>
           <div class="testimonial-author">
             <strong>Марина Дорохова</strong>
@@ -1929,9 +1969,6 @@ p { color: var(--cream-dim); }
         </div>
 
         <div class="testimonial-card reveal reveal-delay-2">
-          <div class="stars">
-            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-          </div>
           <blockquote>«Работаю с&nbsp;ребятами на&nbsp;трёх проектах подряд. Чётко по&nbsp;ТЗ, без отсебятины, всегда на&nbsp;связи. Для дизайнера это идеальный подрядчик&nbsp;&mdash; я&nbsp;спокоен за&nbsp;результат перед заказчиком.»</blockquote>
           <div class="testimonial-author">
             <strong>Игорь Савельев</strong>
@@ -2130,6 +2167,12 @@ p { color: var(--cream-dim); }
       </div>
     </div>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">&times;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
 
   <!-- STICKY FLOATING CTA -->
   <a href="#contact" class="sticky-cta" id="stickyCta">
@@ -2382,10 +2425,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const dots = dotsWrap.querySelectorAll('.carousel-dot');
 
     function getSlideWidth() {
+      // Use actual rendered slide width + gap for accurate translation
+      const slide = slides[0];
+      if (!slide) return 0;
       const gap = 16;
-      const pv = perView();
-      const wrap = carousel.parentElement.offsetWidth;
-      return (wrap - gap * (pv - 1)) / pv + gap;
+      return slide.offsetWidth + gap;
     }
 
     function goTo(idx) {
@@ -2418,6 +2462,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (typeof lucide !== 'undefined') lucide.createIcons();
   }
+
+  // ===== Lightbox =====
+  const lightbox    = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  lightboxClose.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Problem & Solution images
+  document.querySelectorAll('.problem-card-img img, .solution-card-image img').forEach(img => {
+    img.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLightbox(img.src, img.alt);
+    });
+  });
+
+  // Portfolio carousel slides
+  document.querySelectorAll('.portfolio-slide').forEach(slide => {
+    slide.addEventListener('click', (e) => {
+      const img = slide.querySelector('img');
+      if (img) openLightbox(img.src, img.alt);
+    });
+  });
 });
 </script>
 </body>
