@@ -6,6 +6,8 @@
   <title>Декоративная скала из арт-бетона | Rock&amp;Stone</title>
   <meta name="description" content="Декоративные скалы ручной работы из архитектурного бетона для интерьеров. Уникальный рельеф, монтаж под ключ, бесплатный эскиз. Rock&Stone.">
 
+  <link rel="preload" as="image" href="assets/portfolio/slanec2.jpg">
+
   <!-- Canonical -->
   <link rel="canonical" href="https://proninpaul-afk.github.io/Rock/">
 
@@ -139,8 +141,8 @@ p { color: var(--cream-dim); }
 
 /* ===== SCROLL ANIMATIONS ===== */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.visible {
@@ -1675,24 +1677,47 @@ p { color: var(--cream-dim); }
 .solution-card-image img {
   cursor: zoom-in;
 }
+
+/* Finishing touches: keyboard access, anchor offsets and mobile controls. */
+section[id] { scroll-margin-top: 88px; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
+.skip-link { position: fixed; left: 16px; top: -100px; z-index: 1000; padding: 12px 20px; background: var(--gold); color: var(--black); }
+.skip-link:focus { top: 16px; }
+.burger { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; z-index: 250; }
+.carousel-dots { flex-wrap: wrap; justify-content: center; }
+.carousel-dot { position: relative; }
+.carousel-dot::after { content: ''; position: absolute; inset: -10px; }
+.carousel-btn:disabled { opacity: .35; cursor: default; transform: none; }
+.portfolio-slide, .kino-slide { cursor: zoom-in; }
+@media (max-width: 768px) {
+  .nav-links:not(.open) { visibility: hidden; }
+  .nav-links { height: 100dvh; }
+  .kino-slide { flex-basis: 100% !important; }
+  .sticky-cta { bottom: max(20px, env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 </head>
 <body>
+  <a class="skip-link" href="#hero">Перейти к содержимому</a>
 
   <!-- HEADER -->
   <header class="header" id="header">
     <div class="container">
       <a href="#" class="logo">Rock<span>&amp;Stone</span></a>
-      <nav class="nav-links" id="navLinks">
+      <nav class="nav-links" id="navLinks" aria-label="Основная навигация">
         <a href="#origin">Из кино</a>
         <a href="#process">Процесс</a>
         <a href="#portfolio">Работы</a>
         <a href="#testimonials">Отзывы</a>
         <a href="#faq">FAQ</a>
-        <a href="#contact" class="nav-cta">Оставить заявку</a>
+        <a href="#contact" class="nav-cta">Обсудить проект</a>
       </nav>
       <div class="nav-overlay" id="navOverlay"></div>
-      <button class="burger" id="burger" aria-label="Открыть меню">
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-controls="navLinks" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -1754,7 +1779,7 @@ p { color: var(--cream-dim); }
       <div class="problem-grid">
         <div class="problem-card reveal">
           <div class="problem-card-img">
-            <img src="assets/portfolio/gipsocarton.png" alt="Гипсокартон — плоская отделка без характера">
+            <img loading="lazy" decoding="async" src="assets/portfolio/gipsocarton.png" alt="Гипсокартон — плоская отделка без характера">
           </div>
           <div class="icon-wrap"><i data-lucide="copy"></i></div>
           <h3>Всё одинаковое</h3>
@@ -1762,7 +1787,7 @@ p { color: var(--cream-dim); }
         </div>
         <div class="problem-card reveal reveal-delay-1">
           <div class="problem-card-img">
-            <img src="assets/portfolio/bedroom.png" alt="Спальня без акцента — интерьер забывается">
+            <img loading="lazy" decoding="async" src="assets/portfolio/bedroom.png" alt="Спальня без акцента — интерьер забывается">
           </div>
           <div class="icon-wrap"><i data-lucide="eye-off"></i></div>
           <h3>Нет акцента</h3>
@@ -1770,7 +1795,7 @@ p { color: var(--cream-dim); }
         </div>
         <div class="problem-card reveal reveal-delay-2">
           <div class="problem-card-img">
-            <img src="assets/portfolio/bathroom.png" alt="Ванная без фактуры — плоско и безлично">
+            <img loading="lazy" decoding="async" src="assets/portfolio/bathroom.png" alt="Ванная без фактуры — плоско и безлично">
           </div>
           <div class="icon-wrap"><i data-lucide="hand"></i></div>
           <h3>Нет тактильности</h3>
@@ -1788,7 +1813,7 @@ p { color: var(--cream-dim); }
       <div class="solution-grid">
         <a href="#contact" class="solution-card reveal">
           <div class="solution-card-image">
-            <img src="assets/portfolio/fireplace.jpg" alt="Гостиная с декоративной скалой у камина">
+            <img loading="lazy" decoding="async" src="assets/portfolio/fireplace.jpg" alt="Гостиная с декоративной скалой у камина">
           </div>
           <div class="solution-card-body">
             <h3>Гостиная / Камин</h3>
@@ -1798,7 +1823,7 @@ p { color: var(--cream-dim); }
         </a>
         <a href="#contact" class="solution-card reveal reveal-delay-1">
           <div class="solution-card-image">
-            <img src="assets/portfolio/SPA.png" alt="SPA-зона с декоративной скалой из арт-бетона">
+            <img loading="lazy" decoding="async" src="assets/portfolio/SPA.png" alt="SPA-зона с декоративной скалой из арт-бетона">
           </div>
           <div class="solution-card-body">
             <h3>Ванная / SPA-зона</h3>
@@ -1808,7 +1833,7 @@ p { color: var(--cream-dim); }
         </a>
         <a href="#contact" class="solution-card reveal reveal-delay-2">
           <div class="solution-card-image">
-            <img src="assets/portfolio/reception.png" alt="Ресторан или лобби отеля с декоративной скалой">
+            <img loading="lazy" decoding="async" src="assets/portfolio/reception.png" alt="Ресторан или лобби отеля с декоративной скалой">
           </div>
           <div class="solution-card-body">
             <h3>Ресторан / Лобби отеля</h3>
@@ -1845,25 +1870,25 @@ p { color: var(--cream-dim); }
         <div class="kino-carousel-wrap" style="position:relative;overflow:hidden;border-radius:12px;">
           <div class="kino-carousel" id="kinoCarousel" style="display:flex;gap:16px;transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);">
             <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
-              <img src="assets/portfolio/kino-1.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <img loading="lazy" decoding="async" src="assets/portfolio/kino-1.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
             <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
-              <img src="assets/portfolio/kino-2.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <img loading="lazy" decoding="async" src="assets/portfolio/kino-2.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
             <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
-              <img src="assets/portfolio/kino-3.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <img loading="lazy" decoding="async" src="assets/portfolio/kino-3.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
             <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
-              <img src="assets/portfolio/kino-4.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <img loading="lazy" decoding="async" src="assets/portfolio/kino-4.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
             <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
-              <img src="assets/portfolio/kino-5.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <img loading="lazy" decoding="async" src="assets/portfolio/kino-5.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
             <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
-              <img src="assets/portfolio/kino-6.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <img loading="lazy" decoding="async" src="assets/portfolio/kino-6.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
             <div class="kino-slide" style="flex:0 0 calc(50% - 8px);aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--stone-light);">
-              <img src="assets/portfolio/kino-7.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <img loading="lazy" decoding="async" src="assets/portfolio/kino-7.jpg" alt="Кинодекорации Rock&Stone" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
           </div>
         </div>
@@ -2003,17 +2028,17 @@ p { color: var(--cream-dim); }
       <h2 class="reveal">Примеры <span class="text-gold">работ</span></h2>
       <div class="portfolio-carousel-wrap reveal reveal-delay-1">
         <div class="portfolio-carousel" id="portfolioCarousel">
-          <div class="portfolio-slide"><img src="assets/portfolio/work-01.jpg" alt="Декоративная скала из арт-бетона — гостиная, Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-02.jpg" alt="Фактурная стена из арт-бетона — спальня, Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-03.jpg" alt="Декоративный камень в интерьере — Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-04.jpg" alt="Скала ручной работы из арт-бетона — Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-05.jpg" alt="Интерьер с декоративной скалой — Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-06.jpg" alt="Арт-бетон в интерьере — Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-07.jpg" alt="Декоративная скала в ресторане — Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-08.jpg" alt="Фактурная стена из бетона — Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-09.jpg" alt="Скала из арт-бетона в SPA-зоне — Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-10.jpg" alt="Декоративный рельеф из арт-бетона — Rock&Stone"></div>
-          <div class="portfolio-slide"><img src="assets/portfolio/work-11.png" alt="Интерьер с каменной стеной — Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-01.jpg" alt="Декоративная скала из арт-бетона — гостиная, Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-02.jpg" alt="Фактурная стена из арт-бетона — спальня, Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-03.jpg" alt="Декоративный камень в интерьере — Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-04.jpg" alt="Скала ручной работы из арт-бетона — Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-05.jpg" alt="Интерьер с декоративной скалой — Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-06.jpg" alt="Арт-бетон в интерьере — Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-07.jpg" alt="Декоративная скала в ресторане — Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-08.jpg" alt="Фактурная стена из бетона — Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-09.jpg" alt="Скала из арт-бетона в SPA-зоне — Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-10.jpg" alt="Декоративный рельеф из арт-бетона — Rock&Stone"></div>
+          <div class="portfolio-slide"><img loading="lazy" decoding="async" src="assets/portfolio/work-11.png" alt="Интерьер с каменной стеной — Rock&Stone"></div>
         </div>
       </div>
       <div class="carousel-nav">
@@ -2032,7 +2057,7 @@ p { color: var(--cream-dim); }
       <div class="testimonials-grid">
 
         <div class="testimonial-card reveal">
-          <blockquote>«Хотел сделать имитацию скалы в&nbsp;подвале, но&nbsp;не&nbsp;до&nbsp;конца понимал итог. Андрей и&nbsp;Лиана предложили эскиз, в&nbsp;процессе советовались и&nbsp;при этом опирались на&nbsp;свою экспертизу, честно направляя решения. Работали чётко: всё согласовали заранее, приезжали вовремя, после себя оставляли порядок. За&nbsp;5&nbsp;дней сделали результат, который превзошёл ожидания&nbsp;&mdash; теперь ощущение, что дом стоит на&nbsp;скале. Рекомендую.»</blockquote>
+          <blockquote>«Хотел сделать имитацию скалы в&nbsp;подвале, но&nbsp;не&nbsp;до&nbsp;конца понимал итог. Андрей с командой предложили эскиз, в&nbsp;процессе советовались и&nbsp;при этом опирались на&nbsp;свою экспертизу, честно направляя решения. Работали чётко: всё согласовали заранее, приезжали вовремя, после себя оставляли порядок. За&nbsp;5&nbsp;дней сделали результат, который превзошёл ожидания&nbsp;&mdash; теперь ощущение, что дом стоит на&nbsp;скале. Рекомендую.»</blockquote>
           <div class="testimonial-author">
             <strong>Павел Пронин</strong>
             <span>Владелец загородного дома, Новая Москва</span>
@@ -2189,8 +2214,8 @@ p { color: var(--cream-dim); }
   <!-- 11. FINAL CTA -->
   <section class="final-cta section-padding noise" id="contact">
     <div class="container">
-      <h2 class="reveal">Напишите нам&nbsp;&mdash; ответим <span class="text-gold">за&nbsp;15&nbsp;минут</span></h2>
-      <p class="reveal reveal-delay-1">Обсудим ваш проект, приедем на замер и сделаем эскиз. Всё бесплатно.</p>
+      <h2 class="reveal">Обсудим <span class="text-gold">ваш проект</span></h2>
+      <p class="reveal reveal-delay-1">Москва и область. Пришлите фото помещения, примерные размеры и желаемую фактуру — обсудим стоимость, сроки, замер и эскиз.</p>
       <div class="cta-contacts reveal reveal-delay-2">
         <a href="https://t.me/AKROBATYA" target="_blank" rel="noopener" class="cta-contact-card">
           <i data-lucide="send"></i>
@@ -2238,7 +2263,7 @@ p { color: var(--cream-dim); }
           <a href="tel:+79269406199">+7 926 940 61 99</a>
           <a href="https://t.me/AKROBATYA" target="_blank" rel="noopener">Telegram @AKROBATYA</a>
           <a href="https://wa.me/79269406199" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="#">Москва и область</a>
+          <span>Москва и область</span>
         </div>
       </div>
       <div class="footer-bottom">
@@ -2248,7 +2273,7 @@ p { color: var(--cream-dim); }
   </footer>
 
   <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото" aria-hidden="true" tabindex="-1">
     <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">&times;</button>
     <img class="lightbox-img" id="lightboxImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
   </div>
@@ -2273,24 +2298,34 @@ p { color: var(--cream-dim); }
     const kinoCount = kinoSlides.length;
     let kinoIndex = 0;
 
-    kinoSlides.forEach((_, i) => {
-      const dot = document.createElement('div');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => goKino(i));
-      kinoDots.appendChild(dot);
-    });
-
+    const perView = () => window.innerWidth <= 768 ? 1 : 2;
     function goKino(idx) {
-      kinoIndex = (idx + kinoCount) % kinoCount;
-      const slideWidth = kinoSlides[0].offsetWidth + 16;
+      const max = Math.max(0, kinoCount - perView());
+      kinoIndex = Math.min(Math.max(idx, 0), max);
+      const slideWidth = kinoSlides[0].getBoundingClientRect().width + 16;
       kinoCarousel.style.transform = 'translateX(-' + (kinoIndex * slideWidth) + 'px)';
-      kinoDots.querySelectorAll('.carousel-dot').forEach(function(d, i) {
-        d.classList.toggle('active', i === kinoIndex);
+      kinoPrev.disabled = kinoIndex === 0;
+      kinoNext.disabled = kinoIndex === max;
+      kinoDots.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === kinoIndex);
+        dot.setAttribute('aria-current', String(i === kinoIndex));
       });
     }
-
-    if (kinoPrev) kinoPrev.addEventListener('click', function() { goKino(kinoIndex - 1); });
-    if (kinoNext) kinoNext.addEventListener('click', function() { goKino(kinoIndex + 1); });
+    function layoutKino() {
+      kinoDots.replaceChildren();
+      for (let i = 0; i <= Math.max(0, kinoCount - perView()); i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', 'Кинодекорации: слайд ' + (i + 1));
+        dot.addEventListener('click', () => goKino(i));
+        kinoDots.appendChild(dot);
+      }
+      goKino(kinoIndex);
+    }
+    kinoPrev.addEventListener('click', () => goKino(kinoIndex - 1));
+    kinoNext.addEventListener('click', () => goKino(kinoIndex + 1));
+    window.addEventListener('resize', layoutKino);
+    layoutKino();
   }
   document.addEventListener('DOMContentLoaded', initKino);
 })();
@@ -2322,20 +2357,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('navLinks');
   const navOverlay = document.getElementById('navOverlay');
 
-  burger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    navOverlay.classList.toggle('open');
+  function setMenu(open) {
+    navLinks.classList.toggle('open', open);
+    navOverlay.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+  navOverlay.addEventListener('click', () => setMenu(false));
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', event => {
+    if (!navLinks.classList.contains('open')) return;
+    if (event.key === 'Escape') { setMenu(false); burger.focus(); }
+    if (event.key === 'Tab') {
+      const links = [...navLinks.querySelectorAll('a'), burger];
+      const index = links.indexOf(document.activeElement);
+      event.preventDefault();
+      links[(index + (event.shiftKey ? -1 : 1) + links.length) % links.length].focus();
+    }
   });
-  navOverlay.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    navOverlay.classList.remove('open');
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navOverlay.classList.remove('open');
-    });
-  });
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) setMenu(false); });
 
   // ===== Scroll reveal (Intersection Observer) =====
   const reveals = document.querySelectorAll('.reveal');
@@ -2389,138 +2431,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ===== Telegram Bot config =====
-  const TELEGRAM_BOT_TOKEN = ''; // например: '1234567890:AAH_xxx...'
-  const TELEGRAM_CHAT_ID   = ''; // например: '123456789'
-  const TELEGRAM_USERNAME  = 'AKROBATYA'; // fallback-получатель
-
-  // ===== Form validation + submission =====
-  const form = document.getElementById('contactForm');
-  const formSuccess = document.getElementById('formSuccess');
-  const formSubmitBtn = document.getElementById('formSubmitBtn');
-
-  if (form) {
-
-  const typeLabels = {
-    apartment: 'Квартира',
-    house: 'Загородный дом',
-    restaurant: 'Ресторан / Кафе',
-    hotel: 'Отель / SPA',
-    office: 'Офис / Шоурум',
-    other: 'Другое'
-  };
-
-  const buildMessage = ({ name, phone, type }) => {
-    const lines = [
-      '🏔 Новая заявка с сайта Rock&amp;Stone',
-      '',
-      '👤 Имя: ' + name,
-      '📞 Телефон: ' + phone,
-      '🏠 Тип объекта: ' + (typeLabels[type] || type),
-      '',
-      '🕐 ' + new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' }) + ' (МСК)'
-    ];
-    return lines.join('\n');
-  };
-
-  const sendViaBot = async (text) => {
-    const url = 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage';
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: text,
-        parse_mode: 'HTML',
-        disable_web_page_preview: true
-      })
-    });
-    if (!res.ok) throw new Error('Telegram API error: ' + res.status);
-    const data = await res.json();
-    if (!data.ok) throw new Error('Telegram API: ' + (data.description || 'unknown'));
-    return data;
-  };
-
-  const openDeepLinkFallback = (text) => {
-    const url = 'https://t.me/' + TELEGRAM_USERNAME + '?text=' + encodeURIComponent(text);
-    window.open(url, '_blank', 'noopener');
-  };
-
-  const showSuccess = () => {
-    form.style.display = 'none';
-    formSuccess.style.display = 'block';
-    if (typeof lucide !== 'undefined') lucide.createIcons();
-  };
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    let valid = true;
-
-    // Reset errors
-    form.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
-
-    const name = form.querySelector('[name="name"]');
-    if (!name.value.trim()) {
-      name.closest('.form-group').classList.add('error');
-      valid = false;
-    }
-    const phone = form.querySelector('[name="phone"]');
-    if (!phone.value.trim() || phone.value.replace(/\D/g, '').length < 7) {
-      phone.closest('.form-group').classList.add('error');
-      valid = false;
-    }
-    const type = form.querySelector('[name="type"]');
-    if (!type.value) {
-      type.closest('.form-group').classList.add('error');
-      valid = false;
-    }
-
-    if (!valid) return;
-
-    const payload = {
-      name: name.value.trim(),
-      phone: phone.value.trim(),
-      type: type.value
-    };
-    const message = buildMessage(payload);
-
-    formSubmitBtn.classList.add('loading');
-    formSubmitBtn.disabled = true;
-
-    try {
-      if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
-        // Primary: direct Bot API
-        await sendViaBot(message);
-        showSuccess();
-      } else {
-        // Fallback: open Telegram with prefilled message
-        openDeepLinkFallback(message);
-        showSuccess();
-      }
-    } catch (err) {
-      console.error('Telegram send failed, falling back to deep link:', err);
-      openDeepLinkFallback(message);
-      showSuccess();
-    } finally {
-      formSubmitBtn.classList.remove('loading');
-      formSubmitBtn.disabled = false;
-    }
-  }); // end form submit
-  } // end if (form)
-
   // ===== Lightbox (defined early so carousel can call openLightbox) =====
   const lightbox      = document.getElementById('lightbox');
   const lightboxImg   = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
 
+  let lightboxTrigger;
   function openLightbox(src, alt) {
+    lightboxTrigger = document.activeElement;
     lightboxImg.src = src;
     lightboxImg.alt = alt || '';
     lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    lightboxClose.focus();
     document.body.style.overflow = 'hidden';
   }
   function closeLightbox() {
     lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    if (lightboxTrigger) lightboxTrigger.focus();
     document.body.style.overflow = '';
   }
 
@@ -2529,6 +2458,22 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxClose.addEventListener('click', closeLightbox);
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
+    lightbox.addEventListener('keydown', event => {
+      if (event.key === 'Tab') { event.preventDefault(); lightboxClose.focus(); }
+    });
+    // Keyboard and click access to gallery and cinema images.
+    document.querySelectorAll('.portfolio-slide, .kino-slide, .problem-card-img img').forEach(item => {
+      item.tabIndex = 0;
+      item.setAttribute('role', 'button');
+      const img = item.matches('img') ? item : item.querySelector('img');
+      item.setAttribute('aria-label', 'Увеличить: ' + img.alt);
+      item.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault(); openLightbox(img.src, img.alt);
+        }
+      });
+      if (item.classList.contains('kino-slide')) item.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
     // Problem & Solution images
     document.querySelectorAll('.problem-card-img img, .solution-card-image img').forEach(img => {
       img.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openLightbox(img.src, img.alt); });
@@ -2577,6 +2522,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const max = Math.max(0, total - pv);
       current   = Math.min(Math.max(idx, 0), max);
       carousel.style.transform = `translateX(-${current * (slideW + GAP)}px)`;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === max;
       dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
     }
 
@@ -2600,7 +2547,7 @@ document.addEventListener('DOMContentLoaded', () => {
     carousel.addEventListener('touchstart', e => { startX = e.touches[0].pageX; dragMoved = false; }, { passive: true });
     carousel.addEventListener('touchend', e => {
       const diff = startX - e.changedTouches[0].pageX;
-      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+      if (Math.abs(diff) > 40) { dragMoved = true; goTo(diff > 0 ? current + 1 : current - 1); }
     });
 
     // Lightbox on click (only if not a drag)
