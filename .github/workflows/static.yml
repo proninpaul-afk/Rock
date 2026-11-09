@@ -28,7 +28,7 @@ jobs:
       - name: Prepare public files
         run: |
           mkdir -p _site/assets/portfolio
-          cp index.html robots.txt sitemap.xml yandex_d550037bcbec2af9.html _site/
+          cp index.html robots.txt sitemap.xml yandex_d550037bcbec2af9.html yandex_779488aa4c15cafe.html _site/
           find assets/portfolio -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' -o -iname '*.svg' \) -exec cp {} _site/assets/portfolio/ \;
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
